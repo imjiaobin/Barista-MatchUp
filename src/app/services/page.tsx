@@ -1,5 +1,7 @@
+'use client'
+
 import { motion } from 'framer-motion'
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 import { FiCoffee, FiUsers, FiStar, FiCalendar } from 'react-icons/fi'
 
 const fadeUp = {
@@ -135,7 +137,7 @@ export default function Services() {
         >
           <p className="section-label mb-4">準備好了嗎？</p>
           <h2 className="section-title mb-8">開始你的第一次媒合</h2>
-          <Link to="/contact" className="btn-primary">填寫需求表單</Link>
+          <Link href="/contact" className="btn-primary">填寫需求表單</Link>
         </motion.div>
       </section>
     </>

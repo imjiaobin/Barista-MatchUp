@@ -1,5 +1,7 @@
+'use client'
+
 import { motion } from 'framer-motion'
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 
 export default function NotFound() {
   return (
@@ -74,8 +76,8 @@ export default function NotFound() {
           initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.7 }}
           className="flex flex-wrap justify-center gap-4"
         >
-          <Link to="/" className="btn-primary">回到首頁</Link>
-          <Link to="/contact" className="btn-outline">聯絡我們</Link>
+          <Link href="/" className="btn-primary">回到首頁</Link>
+          <Link href="/contact" className="btn-outline">聯絡我們</Link>
         </motion.div>
       </div>
     </section>

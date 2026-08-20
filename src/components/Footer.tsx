@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 import { FiInstagram, FiMail } from 'react-icons/fi'
 
 export default function Footer() {
@@ -20,11 +20,13 @@ export default function Footer() {
             {[
               { label: '品牌故事', path: '/about' },
               { label: '服務項目', path: '/services' },
-              { label: '咖啡師介紹', path: '/baristas' },
+              { label: '活動經歷', path: '/events' },
+              // 咖啡師介紹頁面先隱藏，待後續功能規劃完成後再放回
+              // { label: '咖啡師介紹', path: '/baristas' },
               { label: '聯絡我們', path: '/contact' },
             ].map(({ label, path }) => (
               <li key={path}>
-                <Link to={path} className="hover:text-white transition-colors duration-200">
+                <Link href={path} className="hover:text-white transition-colors duration-200">
                   {label}
                 </Link>
               </li>

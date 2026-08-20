@@ -1,7 +1,7 @@
 import type { Config } from 'tailwindcss'
 
 const config: Config = {
-  content: ['./index.html', './src/**/*.{ts,tsx}'],
+  content: ['./src/app/**/*.{ts,tsx}', './src/components/**/*.{ts,tsx}'],
   theme: {
     extend: {
       colors: {
@@ -11,7 +11,7 @@ const config: Config = {
         cream: '#a4d1c8',
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
+        sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
       },
     },
   },

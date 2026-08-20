@@ -7,12 +7,11 @@
 
 | 工具 | 版本 | 用途 |
 |------|------|------|
-| Vite | ^8 | 建置工具 |
+| Next.js（App Router） | ^16 | 框架、路由、建置工具 |
 | React | ^19 | UI 框架 |
 | TypeScript | ~6 | 型別安全 |
 | Tailwind CSS | ^3.4 | Utility-first 樣式 |
 | Framer Motion | ^12 | 頁面切換與動畫 |
-| React Router | ^7 | 前端路由 |
 | React Icons | ^5 | 圖示庫 |
 | Sass | ^1 | 全域樣式補充 |
 
@@ -30,16 +29,15 @@
 
 ```
 src/
-├── assets/           圖片、SVG、靜態資源
-├── components/       共用元件
+├── app/               App Router：layout.tsx、page.tsx、about/、services/、baristas/、contact/、not-found.tsx
+├── assets/            圖片、SVG、靜態資源
+├── components/        共用元件
 │   ├── Navbar.tsx
 │   ├── Footer.tsx
-│   └── Layout.tsx
-├── pages/            各頁面元件
-├── router/           React Router 設定
-├── types/            TypeScript 型別定義
+│   └── PageTransition.tsx
+├── types/             TypeScript 型別定義
 └── styles/
-    └── global.scss   Tailwind directives + 全域樣式
+    └── global.scss    Tailwind directives + 全域樣式
 ```
 
 ## 快速開始
@@ -48,14 +46,14 @@ src/
 # 安裝依賴
 npm install
 
-# 啟動開發伺服器（http://localhost:5173）
+# 啟動開發伺服器（http://localhost:3000）
 npm run dev
 
-# TypeScript 編譯檢查 + 打包
+# TypeScript 型別檢查 + 打包
 npm run build
 
-# 預覽打包結果
-npm run preview
+# 以 production 模式啟動打包結果
+npm run start
 
 # ESLint 檢查
 npm run lint
@@ -76,7 +74,7 @@ vercel
 
 1. 將專案推上 GitHub
 2. 至 [vercel.com](https://vercel.com) → Import Git Repository
-3. 選擇 repo → Deploy（Framework Preset 自動偵測為 Vite）
+3. 選擇 repo → Deploy（Framework Preset 自動偵測為 Next.js）
 
 每次推送至 `main` branch 將自動觸發重新部署。
 
@@ -94,9 +92,9 @@ vercel
 若日後串接 EmailJS 或其他第三方服務，請在根目錄建立 `.env`：
 
 ```env
-VITE_EMAILJS_SERVICE_ID=your_service_id
-VITE_EMAILJS_TEMPLATE_ID=your_template_id
-VITE_EMAILJS_PUBLIC_KEY=your_public_key
+NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_service_id
+NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your_template_id
+NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
 ```
 
 `.env` 已加入 `.gitignore`，請勿 commit。
