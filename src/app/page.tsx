@@ -51,9 +51,9 @@ const stats = [
 
 const founders = [
   {
-    name: '勞版',
+    name: 'Hardy',
     role: '共同創辦人',
-    tag: '2016 台灣手沖冠軍 · 木咖 Muka Coffee 創辦人',
+    tag: '2016 台灣手沖冠軍 · 木咖 Horoka Coffee 創辦人',
     bio: '2016 年台灣手沖咖啡冠軍，深耕手沖沖煮多年，現為「木咖」咖啡廳創辦人。將競賽級的沖煮功底與經營品牌的實戰經驗，帶入 Pourfolio 的咖啡師審核與媒合標準。',
     bg: 'linear-gradient(155deg, #584b42 0%, #537d91 100%)',
   },
@@ -105,7 +105,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -16 }}
-                transition={{ duration: 0.45 }}
+                transition={{ duration: 0.5 }}
               >
                 <p className="section-label md:text-[16px] mb-6">{slides[current].tag}</p>
                 <h1 className="text-5xl md:text-7xl font-light text-stone-900 leading-[1.05] tracking-tight mb-8">
@@ -162,13 +162,13 @@ export default function Home() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                transition={{ duration: 0.6 }}
+                transition={{ duration: 0.5 }}
                 className="absolute inset-0"
               >
                 <motion.div
                   initial={{ scale: 1.05 }}
                   animate={{ scale: 1 }}
-                  transition={{ duration: 0.8, ease: 'easeOut' }}
+                  transition={{ duration: 0.5, ease: 'easeOut' }}
                   className="relative w-full h-full"
                 >
                   <Image
@@ -308,7 +308,7 @@ export default function Home() {
           >
             <div>
               <p className="section-label mb-3 md:text-lg">創辦團隊</p>
-              <h2 className="section-title">帶著職人經歷<br />打造 <span className="">Pourfolio</span></h2>
+              <h2 className="section-title">帶著職人經歷，<br /><span className="text-brown font-[20px]">打造</span> <span className="hover:text-indigo transition-all duration-200">Pourfolio</span></h2>
             </div>
             <Link
               href="/about"
