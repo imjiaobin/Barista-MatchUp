@@ -7,34 +7,40 @@
 
 | 工具 | 版本 | 用途 |
 |------|------|------|
-| Next.js（App Router） | ^16 | 框架、路由、建置工具 |
+| Next.js（App Router） | ^16 | 框架、路由、建置工具、Server Actions |
 | React | ^19 | UI 框架 |
 | TypeScript | ~6 | 型別安全 |
 | Tailwind CSS | ^3.4 | Utility-first 樣式 |
 | Framer Motion | ^12 | 頁面切換與動畫 |
 | React Icons | ^5 | 圖示庫 |
 | Sass | ^1 | 全域樣式補充 |
+| Drizzle ORM | ^0.45 | 資料庫 ORM |
+| Neon Postgres | — | Serverless PostgreSQL |
+| jose / bcryptjs | — | 後台登入 session（JWT）與密碼雜湊 |
+| Nodemailer | ^9 | 聯絡表單通知信（Gmail SMTP） |
 
 ## 頁面結構
 
 ```
-/           首頁       Hero 輪播、媒合流程、精選咖啡師、CTA
-/about      品牌故事   創辦初衷、品牌核心價值、發展路線圖
-/services   服務項目   四項服務說明（媒合、企劃協力、品牌聯名、常態方案）
-/baristas   咖啡師     咖啡師列表、分類篩選、申請加入入口
-/contact    聯絡我們   活動需求詢問表單
+/                前台首頁     Hero 輪播、媒合流程、精選咖啡師、CTA
+/about           品牌故事     創辦初衷、品牌核心價值、發展路線圖
+/services        服務項目     四項服務說明（媒合、企劃協力、品牌聯名、常態方案）
+/baristas        咖啡師       咖啡師列表、分類篩選、申請加入入口（v2 才會有後台管理）
+/events          活動經歷     歷屆活動列表，資料來自資料庫
+/contact         聯絡我們     活動需求詢問表單，送出後寫入資料庫並寄信通知管理員
+/admin/login     後台登入
+/admin           後台管理     活動 CRUD、詢問表單紀錄、首頁/品牌故事文案編輯、帳號設定
 ```
 
 ## 專案結構
 
 ```
 src/
-├── app/               App Router：layout.tsx、page.tsx、about/、services/、baristas/、contact/、not-found.tsx
+├── app/               App Router：前台頁面 + admin/（後台，middleware.ts 保護）
 ├── assets/            圖片、SVG、靜態資源
-├── components/        共用元件
-│   ├── Navbar.tsx
-│   ├── Footer.tsx
-│   └── PageTransition.tsx
+├── components/        共用元件（Navbar、Footer、PageTransition、admin/ 後台元件...）
+├── db/                Drizzle schema、DB client、seed 腳本
+├── lib/               auth/email/常數、actions/（Server Actions）
 ├── types/             TypeScript 型別定義
 └── styles/
     └── global.scss    Tailwind directives + 全域樣式
@@ -89,12 +95,29 @@ vercel
 
 ## 環境變數
 
-若日後串接 EmailJS 或其他第三方服務，請在根目錄建立 `.env`：
+複製 `.env.example` 為 `.env` 並填入實際值：
 
 ```env
-NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_service_id
-NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your_template_id
-NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
+DATABASE_URL=                # Neon PostgreSQL 連線字串
+ADMIN_SESSION_SECRET=        # 後台 session JWT 簽章密鑰
+ADMIN_SEED_USERNAME=         # 僅 db:seed-admin 使用
+ADMIN_SEED_PASSWORD=         # 僅 db:seed-admin 使用
+GMAIL_USER=                  # 寄送聯絡表單通知信的 Gmail 帳號
+GMAIL_APP_PASSWORD=          # Gmail 應用程式密碼
+ADMIN_NOTIFICATION_EMAIL=    # 通知信收件地址
+NEXT_PUBLIC_SITE_URL=        # 正式網址，供 sitemap/metadata 使用
 ```
 
 `.env` 已加入 `.gitignore`，請勿 commit。
+
+## 資料庫
+
+```bash
+npm run db:generate     # 依 schema 產生 migration SQL（commit 進 drizzle/）
+npm run db:migrate      # 套用 migration 到 DATABASE_URL 指向的資料庫
+npm run db:studio       # 開啟 Drizzle Studio 瀏覽資料
+npm run db:seed-admin   # 建立/更新後台管理員帳號（讀 ADMIN_SEED_USERNAME/PASSWORD）
+npm run db:seed-content # 匯入初始頁面文案與活動資料
+```
+
+首次建置流程：`npm run db:migrate` → `npm run db:seed-admin` → `npm run db:seed-content`。

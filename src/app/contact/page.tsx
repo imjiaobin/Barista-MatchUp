@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { FiMail, FiInstagram, FiSend } from 'react-icons/fi'
+import { submitContactInquiry } from '../../lib/actions/contact'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -19,23 +20,36 @@ interface FormState {
   eventType: string
   budget: string
   message: string
+  website: string
 }
 
 const initialForm: FormState = {
-  name: '', email: '', eventDate: '', eventType: '', budget: '', message: '',
+  name: '', email: '', eventDate: '', eventType: '', budget: '', message: '', website: '',
 }
 
 export default function Contact() {
   const [form, setForm] = useState<FormState>(initialForm)
   const [submitted, setSubmitted] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }))
   }
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    setSubmitted(true)
+    setSubmitting(true)
+    setError(null)
+
+    const result = await submitContactInquiry(form)
+
+    setSubmitting(false)
+    if (result.success) {
+      setSubmitted(true)
+    } else {
+      setError(result.error ?? '送出失敗，請稍後再試')
+    }
   }
 
   return (
@@ -101,6 +115,11 @@ export default function Contact() {
               </motion.div>
             ) : (
               <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+                <input
+                  type="text" name="website" value={form.website} onChange={handleChange}
+                  tabIndex={-1} autoComplete="off" aria-hidden="true"
+                  className="absolute -left-[9999px] w-px h-px overflow-hidden"
+                />
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="flex flex-col gap-2">
                     <label className="text-xs tracking-widest uppercase text-stone-400">姓名 / 公司</label>
@@ -167,8 +186,10 @@ export default function Contact() {
                   />
                 </div>
 
-                <button type="submit" className="btn-primary self-start flex items-center gap-2">
-                  <FiSend size={14} /> 送出需求
+                {error && <p className="text-sm text-red-600">{error}</p>}
+
+                <button type="submit" disabled={submitting} className="btn-primary self-start flex items-center gap-2 disabled:opacity-50">
+                  <FiSend size={14} /> {submitting ? '送出中...' : '送出需求'}
                 </button>
               </form>
             )}
