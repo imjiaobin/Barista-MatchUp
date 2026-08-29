@@ -1,4 +1,4 @@
-import { boolean, date, pgTable, serial, text, timestamp, unique, uuid, varchar } from 'drizzle-orm/pg-core'
+import { boolean, date, integer, pgTable, serial, text, timestamp, unique, uuid, varchar } from 'drizzle-orm/pg-core'
 
 export const events = pgTable('events', {
   id: uuid('id').primaryKey().defaultRandom(),
@@ -16,12 +16,30 @@ export const events = pgTable('events', {
 
 export const contactSubmissions = pgTable('contact_submissions', {
   id: uuid('id').primaryKey().defaultRandom(),
-  name: varchar('name', { length: 200 }).notNull(),
-  email: varchar('email', { length: 320 }).notNull(),
-  eventDate: date('event_date'),
-  eventType: varchar('event_type', { length: 100 }),
-  budget: varchar('budget', { length: 100 }),
-  message: text('message'),
+  // 一、聯絡人資訊
+  contactName: varchar('contact_name', { length: 200 }).notNull(),
+  contactPhone: varchar('contact_phone', { length: 50 }).notNull(),
+  contactEmail: varchar('contact_email', { length: 320 }).notNull(),
+  // 二、活動基本資訊
+  eventType: varchar('event_type', { length: 50 }).notNull(),
+  eventCity: varchar('event_city', { length: 20 }).notNull(),
+  eventAddress: varchar('event_address', { length: 300 }).notNull(),
+  venueType: varchar('venue_type', { length: 20 }).notNull(),
+  eventStartAt: timestamp('event_start_at').notNull(),
+  eventEndAt: timestamp('event_end_at').notNull(),
+  // 三、服務需求
+  cupCount: integer('cup_count').notNull(),
+  drinkTypes: text('drink_types').array().notNull(),
+  dessertNeeded: boolean('dessert_needed').notNull().default(false),
+  dessertNotes: text('dessert_notes'),
+  // 四、設備與場地條件（選填，現場常常還不確定）
+  powerSupply: varchar('power_supply', { length: 50 }),
+  waterSource: varchar('water_source', { length: 50 }),
+  // 五、預算與備註
+  budgetRange: varchar('budget_range', { length: 50 }),
+  notes: text('notes'),
+  preferredContactMethod: varchar('preferred_contact_method', { length: 20 }),
+  // 後台追蹤
   status: varchar('status', { length: 20 }).notNull().default('new'),
   createdAt: timestamp('created_at').notNull().defaultNow(),
 })

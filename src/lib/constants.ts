@@ -27,3 +27,33 @@ export const CONTACT_SUBMISSION_STATUSES = ['new', 'contacted', 'archived'] as c
 export type ContactSubmissionStatus = (typeof CONTACT_SUBMISSION_STATUSES)[number]
 
 export const ADMIN_SESSION_COOKIE = 'pourfolio_admin_session'
+
+// ── 聯絡表單選項 ──────────────────────────────────────────────
+export const INQUIRY_EVENT_TYPES = ['企業內訓', '市集擺攤', '婚禮', '私人派對', '品牌快閃', '其他'] as const
+export type InquiryEventType = (typeof INQUIRY_EVENT_TYPES)[number]
+
+export const VENUE_TYPES = ['室內', '室外', '半戶外'] as const
+export type VenueType = (typeof VENUE_TYPES)[number]
+
+export const DRINK_TYPES = ['義式咖啡', '手沖', '冷萃', '茶飲', '無咖啡因選項'] as const
+export type DrinkType = (typeof DRINK_TYPES)[number]
+
+export const POWER_SUPPLY_OPTIONS = ['有標準插座', '需發電機', '不確定（需現場確認）'] as const
+export type PowerSupplyOption = (typeof POWER_SUPPLY_OPTIONS)[number]
+
+export const WATER_SOURCE_OPTIONS = ['現場有飲用水', '需自備', '不確定（需現場確認）'] as const
+export type WaterSourceOption = (typeof WATER_SOURCE_OPTIONS)[number]
+
+export const BUDGET_RANGES = ['NT$5,000 以下', 'NT$5,000 – 15,000', 'NT$15,000 – 30,000', 'NT$30,000 以上'] as const
+export type BudgetRange = (typeof BUDGET_RANGES)[number]
+
+export const PREFERRED_CONTACT_METHODS = ['電話', 'Email'] as const
+export type PreferredContactMethod = (typeof PREFERRED_CONTACT_METHODS)[number]
+
+export const TAIWAN_CITIES = [
+  '台北市', '新北市', '桃園市', '台中市', '台南市', '高雄市',
+  '基隆市', '新竹市', '新竹縣', '苗栗縣', '彰化縣', '南投縣',
+  '雲林縣', '嘉義市', '嘉義縣', '屏東縣', '宜蘭縣', '花蓮縣',
+  '台東縣', '澎湖縣', '金門縣', '連江縣',
+] as const
+export type TaiwanCity = (typeof TAIWAN_CITIES)[number]
