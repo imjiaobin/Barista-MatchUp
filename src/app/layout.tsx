@@ -1,8 +1,7 @@
+import { Analytics } from '@vercel/analytics/next'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import Navbar from '../components/Navbar'
-import Footer from '../components/Footer'
-import PageTransition from '../components/PageTransition'
+import SiteChrome from '../components/SiteChrome'
 import '../styles/global.scss'
 
 const inter = Inter({
@@ -23,11 +22,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="zh-TW" className={inter.variable}>
       <body className="flex flex-col min-h-screen">
-        <Navbar />
-        <main className="flex-1 pt-16">
-          <PageTransition>{children}</PageTransition>
-        </main>
-        <Footer />
+        <SiteChrome>{children}</SiteChrome>
+        <Analytics />
       </body>
     </html>
   )

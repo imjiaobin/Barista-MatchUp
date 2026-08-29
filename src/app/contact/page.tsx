@@ -1,8 +1,8 @@
 'use client'
 
-import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { FiMail, FiInstagram, FiSend } from 'react-icons/fi'
+import { FiMail, FiInstagram } from 'react-icons/fi'
+import ContactWizard from '../../components/contact/ContactWizard'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -12,32 +12,7 @@ const fadeUp = {
   }),
 }
 
-interface FormState {
-  name: string
-  email: string
-  eventDate: string
-  eventType: string
-  budget: string
-  message: string
-}
-
-const initialForm: FormState = {
-  name: '', email: '', eventDate: '', eventType: '', budget: '', message: '',
-}
-
 export default function Contact() {
-  const [form, setForm] = useState<FormState>(initialForm)
-  const [submitted, setSubmitted] = useState(false)
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }))
-  }
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    setSubmitted(true)
-  }
-
   return (
     <>
       {/* Hero */}
@@ -84,94 +59,8 @@ export default function Contact() {
           </motion.div>
 
           {/* Form */}
-          <motion.div custom={1} variants={fadeUp} initial="hidden" animate="visible">
-            {submitted ? (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.96 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="flex flex-col items-center justify-center py-20 text-center"
-              >
-                <div className="w-16 h-16 rounded-full bg-olive/10 flex items-center justify-center mb-6">
-                  <FiSend size={24} className="text-olive" />
-                </div>
-                <h3 className="text-2xl font-light text-stone-800 mb-3">已收到你的需求</h3>
-                <p className="text-stone-500 text-sm leading-relaxed max-w-sm">
-                  我們會在 48 小時內與你聯繫，提供適合的咖啡師推薦。
-                </p>
-              </motion.div>
-            ) : (
-              <form onSubmit={handleSubmit} className="flex flex-col gap-6">
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="flex flex-col gap-2">
-                    <label className="text-xs tracking-widest uppercase text-stone-400">姓名 / 公司</label>
-                    <input
-                      name="name" value={form.name} onChange={handleChange} required
-                      className="border border-stone-200 px-4 py-3 text-sm text-stone-700 bg-transparent focus:outline-none focus:border-brown transition-colors duration-200"
-                      placeholder="王小明 / OO 品牌"
-                    />
-                  </div>
-                  <div className="flex flex-col gap-2">
-                    <label className="text-xs tracking-widest uppercase text-stone-400">Email</label>
-                    <input
-                      name="email" type="email" value={form.email} onChange={handleChange} required
-                      className="border border-stone-200 px-4 py-3 text-sm text-stone-700 bg-transparent focus:outline-none focus:border-brown transition-colors duration-200"
-                      placeholder="hello@example.com"
-                    />
-                  </div>
-                </div>
-
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="flex flex-col gap-2">
-                    <label className="text-xs tracking-widest uppercase text-stone-400">活動日期</label>
-                    <input
-                      name="eventDate" type="date" value={form.eventDate} onChange={handleChange}
-                      className="border border-stone-200 px-4 py-3 text-sm text-stone-700 bg-transparent focus:outline-none focus:border-brown transition-colors duration-200"
-                    />
-                  </div>
-                  <div className="flex flex-col gap-2">
-                    <label className="text-xs tracking-widest uppercase text-stone-400">活動類型</label>
-                    <select
-                      name="eventType" value={form.eventType} onChange={handleChange}
-                      className="border border-stone-200 px-4 py-3 text-sm text-stone-700 bg-transparent focus:outline-none focus:border-brown transition-colors duration-200"
-                    >
-                      <option value="">請選擇</option>
-                      <option>企業尾牙 / 年會</option>
-                      <option>品牌發表會</option>
-                      <option>市集 / 展覽</option>
-                      <option>婚禮 / 宴席</option>
-                      <option>其他</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div className="flex flex-col gap-2">
-                  <label className="text-xs tracking-widest uppercase text-stone-400">預算範圍</label>
-                  <select
-                    name="budget" value={form.budget} onChange={handleChange}
-                    className="border border-stone-200 px-4 py-3 text-sm text-stone-700 bg-transparent focus:outline-none focus:border-brown transition-colors duration-200"
-                  >
-                    <option value="">請選擇</option>
-                    <option>NT$5,000 以下</option>
-                    <option>NT$5,000 – 15,000</option>
-                    <option>NT$15,000 – 30,000</option>
-                    <option>NT$30,000 以上</option>
-                  </select>
-                </div>
-
-                <div className="flex flex-col gap-2">
-                  <label className="text-xs tracking-widest uppercase text-stone-400">活動說明</label>
-                  <textarea
-                    name="message" value={form.message} onChange={handleChange} rows={5}
-                    className="border border-stone-200 px-4 py-3 text-sm text-stone-700 bg-transparent focus:outline-none focus:border-brown transition-colors duration-200 resize-none"
-                    placeholder="請描述活動規模、地點、特殊需求..."
-                  />
-                </div>
-
-                <button type="submit" className="btn-primary self-start flex items-center gap-2">
-                  <FiSend size={14} /> 送出需求
-                </button>
-              </form>
-            )}
+          <motion.div custom={1} variants={fadeUp} initial="hidden" animate="visible" className="relative">
+            <ContactWizard />
           </motion.div>
         </div>
       </section>
