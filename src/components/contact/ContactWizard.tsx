@@ -50,7 +50,7 @@ const initialState: FormState = {
 }
 
 const inputClass = 'border border-stone-200 px-4 py-3 text-sm text-stone-700 bg-transparent focus:outline-none focus:border-brown transition-colors duration-200 w-full'
-const labelClass = 'text-xs tracking-widest uppercase text-stone-400'
+const labelClass = 'text-xs tracking-widest uppercase text-stone-600'
 
 function Chip({ label, active, onClick }: { label: string; active: boolean; onClick: () => void }) {
   return (
@@ -216,10 +216,10 @@ export default function ContactWizard() {
       {/* Progress */}
       <div className="flex items-center gap-2 mb-2">
         {STEP_LABELS.map((label, i) => (
-          <div key={label} className={`h-0.5 flex-1 rounded-full transition-colors duration-300 ${i <= step ? 'bg-brown' : 'bg-stone-200'}`} />
+          <div key={label} className={`h-1.5 flex-1 rounded-full transition-colors duration-300 ${i <= step ? 'bg-brown' : 'bg-stone-300'}`} />
         ))}
       </div>
-      <p className="text-xs text-stone-400 mb-8">
+      <p className="text-xs font-medium tracking-wide text-stone-600 mb-8">
         步驟 {step + 1} / {STEP_LABELS.length} · {STEP_LABELS[step]}
       </p>
 
@@ -398,7 +398,7 @@ export default function ContactWizard() {
                 ['特殊需求備註', form.notes || '無'],
               ].map(([label, value]) => (
                 <div key={label} className="flex justify-between gap-6 border-b border-stone-100 pb-2">
-                  <span className="text-stone-400 shrink-0">{label}</span>
+                  <span className="text-stone-600 shrink-0">{label}</span>
                   <span className="text-stone-700 text-right">{value}</span>
                 </div>
               ))}

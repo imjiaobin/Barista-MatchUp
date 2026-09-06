@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
+import { FiArrowRight, FiMessageCircle } from 'react-icons/fi'
 import { HiMenuAlt3, HiX } from 'react-icons/hi'
 import { PiHouse, PiBookOpen, PiCoffee, PiCalendarDots, PiEnvelopeSimple } from 'react-icons/pi'
 import type { IconType } from 'react-icons'
@@ -31,6 +32,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const [hoveredPath, setHoveredPath] = useState<string | null>(null)
+  const [ctaHovered, setCtaHovered] = useState(false)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40)
@@ -52,7 +54,7 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop links */}
-        <ul className="hidden md:flex items-center gap-8">
+        <ul className="hidden md:flex items-center gap-2">
           {links.map(({ label, path }) => {
             const Icon = navIcons[path]
             return (
@@ -61,27 +63,40 @@ export default function Navbar() {
                   href={path}
                   onMouseEnter={() => setHoveredPath(path)}
                   onMouseLeave={() => setHoveredPath(null)}
-                  className={`group inline-flex items-center font-[525] text-sm tracking-widest uppercase transition-colors duration-200 ${
-                    isActive(path) ? 'text-brown' : 'text-stone-800 hover:text-brown'
-                  }`}
+                  className="group relative block w-28 h-9 font-[525] text-sm tracking-widest uppercase"
                 >
-                  <span className="relative">
-                    {label}
+                  {/* Solid block that drops down from the nav on hover/active. The
+                      link itself is vertically centered in the 64px-tall nav (14px
+                      gap above/below its own 36px box), so the pill extends 14px
+                      above the link to reach the top of the nav bar while its
+                      bottom edge stays put at the link's own bottom. */}
+                  <span
+                    className={`absolute inset-x-0 -top-3.5 h-[50px] bg-brown rounded-b-lg origin-top transition-transform duration-300 ease-out ${
+                      isActive(path) ? 'scale-y-100' : 'scale-y-0 group-hover:scale-y-100'
+                    }`}
+                  />
+                  {/* Content overlay shares the pill's exact box (same -top/height as
+                      the pill above) so the text/icon centers within it precisely */}
+                  <span className="absolute inset-x-0 -top-3.5 h-[50px] z-10 flex items-center justify-center gap-1">
                     <span
-                      className={`absolute bottom-0 left-0 h-px w-full bg-brown origin-left transition-transform duration-300 ease-out ${
-                        isActive(path) ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+                      className={`transition-colors duration-300 ${
+                        isActive(path) ? 'text-white' : 'text-stone-800 group-hover:text-white'
                       }`}
-                    />
-                  </span>
-                  <span className="inline-flex items-center overflow-hidden w-4 h-4 ml-1">
-                    <motion.span
-                      initial={false}
-                      animate={hoveredPath === path || isActive(path) ? { x: 0, opacity: 1 } : { x: -12, opacity: 0 }}
-                      transition={{ duration: 0.2, ease: 'easeOut' }}
-                      className="inline-flex"
                     >
-                      <Icon size={16} />
-                    </motion.span>
+                      {label}
+                    </span>
+                    <span className="inline-flex items-center overflow-hidden w-4 h-4">
+                      <motion.span
+                        initial={false}
+                        animate={hoveredPath === path || isActive(path) ? { x: 0, opacity: 1 } : { x: -12, opacity: 0 }}
+                        transition={{ duration: 0.2, ease: 'easeOut' }}
+                        className={`inline-flex transition-colors duration-300 ${
+                          isActive(path) ? 'text-white' : 'text-stone-800 group-hover:text-white'
+                        }`}
+                      >
+                        <Icon size={16} />
+                      </motion.span>
+                    </span>
                   </span>
                 </Link>
               </li>
@@ -89,8 +104,43 @@ export default function Navbar() {
           })}
         </ul>
 
-        <Link href="/contact" className="hidden md:block btn-primary text-xs py-2 px-5">
-          立即諮詢
+        <Link
+          href="/contact"
+          onMouseEnter={() => setCtaHovered(true)}
+          onMouseLeave={() => setCtaHovered(false)}
+          className="hidden md:inline-flex items-center gap-1.5 btn-primary text-xs py-2 px-5 hover:bg-opacity-100 hover:translate-y-0 hover:scale-[1.03]"
+        >
+          <AnimatePresence mode="popLayout" initial={false}>
+            {!ctaHovered && (
+              <motion.span
+                key="icon"
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -10 }}
+                transition={{ duration: 0.2, ease: 'easeOut' }}
+                className="inline-flex"
+              >
+                <FiMessageCircle size={14} />
+              </motion.span>
+            )}
+          </AnimatePresence>
+          <motion.span layout="position" transition={{ duration: 0.2, ease: 'easeOut' }} className="inline-block">
+            立即諮詢
+          </motion.span>
+          <AnimatePresence mode="popLayout" initial={false}>
+            {ctaHovered && (
+              <motion.span
+                key="arrow"
+                initial={{ opacity: 0, x: 10 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 10 }}
+                transition={{ duration: 0.2, ease: 'easeOut' }}
+                className="inline-flex"
+              >
+                <FiArrowRight size={14} />
+              </motion.span>
+            )}
+          </AnimatePresence>
         </Link>
 
         {/* Mobile hamburger */}
