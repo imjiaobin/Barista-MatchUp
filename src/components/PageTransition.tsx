@@ -64,12 +64,14 @@ export default function PageTransition({ children }: { children: ReactNode }) {
 
       // Must win the race against Next.js's own Link click handler, which
       // React attaches via event delegation and would otherwise navigate
-      // before a bubble-phase listener on document ever runs. Capturing on
-      // document — the outermost point in the capture phase — guarantees
-      // this fires first, and stopPropagation keeps it from ever reaching
-      // Link's handler at all.
+      // immediately. Capturing on document — the outermost point in the
+      // capture phase — guarantees this fires first. We only preventDefault
+      // (not stopPropagation): Link's own handler runs the caller's onClick
+      // first and then bails out once it sees e.defaultPrevented, so plain
+      // preventDefault is enough to cancel Link's navigation while letting
+      // the click still bubble normally — e.g. so a nav link's onClick that
+      // closes a mobile menu still fires.
       e.preventDefault()
-      e.stopPropagation()
       isTransitioning.current = true
       pendingHref.current = href
       curtain.start({ y: '0%', transition: SWEEP }).then(() => {

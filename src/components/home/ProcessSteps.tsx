@@ -95,9 +95,10 @@ export default function ProcessSteps() {
           >
             <Link
               href="/services"
-              className="inline-flex items-center gap-2 text-sm md:text-lg font-bold text-brown tracking-widest uppercase hover:gap-4 transition-all duration-200"
+              className="group inline-flex items-center gap-2 text-sm md:text-lg font-bold text-brown tracking-widest uppercase"
             >
-              了解完整服務 <FiArrowRight />
+              <span className="transition-transform duration-200 group-hover:-translate-x-1">了解完整服務</span>
+              <FiArrowRight className="transition-transform duration-200 group-hover:translate-x-1" />
             </Link>
           </motion.div>
         </div>

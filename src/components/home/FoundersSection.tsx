@@ -41,9 +41,10 @@ export default function FoundersSection({ founders }: { founders: FounderContent
           </div>
           <Link
             href="/about"
-            className="flex items-center gap-2 text-sm md:text-lg md:font-bold text-brown tracking-widest uppercase hover:gap-4 transition-all duration-200 shrink-0"
+            className="group flex items-center gap-2 text-sm md:text-lg md:font-bold text-brown tracking-widest uppercase shrink-0"
           >
-            品牌故事 <FiArrowRight />
+            <span className="transition-transform duration-200 group-hover:-translate-x-1">品牌故事</span>
+            <FiArrowRight className="transition-transform duration-200 group-hover:translate-x-1" />
           </Link>
         </motion.div>
 
@@ -82,9 +83,8 @@ export default function FoundersSection({ founders }: { founders: FounderContent
                   {isHovered && (
                     <motion.div
                       initial={{ opacity: 0, y: 16 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 16 }}
-                      transition={{ duration: 0.35, delay: 0.15 }}
+                      animate={{ opacity: 1, y: 0, transition: { duration: 0.35, delay: 0.15 } }}
+                      exit={{ opacity: 0, y: 16, transition: { duration: 0.15 } }}
                       className={`absolute inset-0 flex flex-col justify-end bg-black/25 py-8 pr-8 ${i === 1 ? 'pl-24' : 'pl-8'}`}
                     >
                       <p className="text-white font-medium text-xl mb-3">{name}</p>

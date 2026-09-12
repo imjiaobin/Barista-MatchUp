@@ -17,10 +17,10 @@ export default function HomeContent({ slides, founders }: HomeContentProps) {
   return (
     <>
       <HeroCarousel slides={slides} />
-      <StatsBar />
       <ProcessSteps />
       <FoundersSection founders={founders} />
       <CtaBanner />
+      <StatsBar />
     </>
   )
 }
