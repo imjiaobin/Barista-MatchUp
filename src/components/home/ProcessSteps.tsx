@@ -21,80 +21,120 @@ export default function ProcessSteps() {
           viewport={{ once: true }}
           className="mb-20 text-center"
         >
-          <p className="section-label md:text-[18px] mb-3">媒合流程</p>
+          <p className="section-label md:text-xl mb-3">媒合流程</p>
           <h2 className="section-title">四個步驟，一次完美的<br />咖啡師媒合體驗</h2>
         </motion.div>
 
-        <div className="max-w-3xl mx-auto">
-          {steps.map(({ num, title, desc }, i) => (
-            <div key={num} className="flex md:gap-12">
-
-              {/* Left: dot + connecting line (desktop only) */}
-              <div className="hidden md:flex flex-col items-center w-20 shrink-0">
-                {/* Top line segment — connects from previous dot (hidden on first) */}
-                {i > 0
-                  ? <div className="w-px h-[60px] bg-stone-200" />
-                  : <div className="h-[60px]" />
-                }
-                <motion.div
-                  className="w-4 h-4 rounded-full bg-[#f77754] shrink-0"
-                  initial={{ scale: 0 }}
-                  whileInView={{ scale: 1 }}
+        {/* Desktop: horizontal layout — dots connected by a single line across the row */}
+        <div className="hidden md:block">
+          <div className="grid grid-cols-4">
+            {steps.map(({ num, title, desc }, i) => (
+              <div key={num} className="flex flex-col items-center text-center">
+                <motion.span
+                  className="block text-lg text-brown tracking-[0.25em] uppercase mb-3"
+                  initial={{ opacity: 0, y: 8 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: 0.3 + i * 0.2, type: 'spring' as const, stiffness: 380 }}
-                />
-                {/* Bottom line segment — hidden on last */}
-                {i < steps.length - 1
-                  ? <motion.div
-                      className="w-px flex-1 bg-stone-200"
-                      initial={{ scaleY: 0 }}
-                      whileInView={{ scaleY: 1 }}
-                      viewport={{ once: true }}
-                      style={{ transformOrigin: 'top' }}
-                      transition={{ duration: 0.5, delay: 0.5 + i * 0.2 }}
-                    />
-                  : <div className="flex-1" />
-                }
-              </div>
-
-              {/* Right: step content */}
-              <motion.div
-                className={`flex-1 py-10 ${i < steps.length - 1 ? 'border-b border-stone-100' : ''}`}
-                initial={{ opacity: 0, x: 28 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.18, duration: 0.4 }}
-              >
-                {/* Mobile indicator */}
-                <div className="md:hidden w-8 h-8 rounded-full bg-brown flex items-center justify-center shrink-0 mb-3">
-                  <span className="text-white text-xs font-semibold">{i + 1}</span>
+                  transition={{ delay: 0.2 + i * 0.2, duration: 0.4 }}
+                >
+                  {num}
+                </motion.span>
+                <motion.h3
+                  className="text-xl font-medium text-stone-800 mb-3"
+                  initial={{ opacity: 0, y: 8 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.25 + i * 0.2, duration: 0.4 }}
+                >
+                  {title}
+                </motion.h3>
+                <div className="flex items-center w-full mb-6">
+                  <motion.div
+                    className={`flex-1 h-px bg-stone-200 ${i === 0 ? 'invisible' : ''}`}
+                    initial={{ scaleX: 0 }}
+                    whileInView={{ scaleX: 1 }}
+                    viewport={{ once: true }}
+                    style={{ transformOrigin: 'right' }}
+                    transition={{ duration: 0.4, delay: 0.4 + i * 0.2 }}
+                  />
+                  <motion.div
+                    className="w-4 h-4 rounded-full bg-[#f77754] shrink-0 mx-2"
+                    initial={{ scale: 0 }}
+                    whileInView={{ scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.3 + i * 0.2, type: 'spring' as const, stiffness: 380 }}
+                  />
+                  <motion.div
+                    className={`flex-1 h-px bg-stone-200 ${i === steps.length - 1 ? 'invisible' : ''}`}
+                    initial={{ scaleX: 0 }}
+                    whileInView={{ scaleX: 1 }}
+                    viewport={{ once: true }}
+                    style={{ transformOrigin: 'left' }}
+                    transition={{ duration: 0.4, delay: 0.5 + i * 0.2 }}
+                  />
                 </div>
-                <span className="hidden md:block text-xs md:text-lg text-brown tracking-[0.25em] uppercase mb-1">{num}</span>
-                <h3 className="text-xl font-medium text-stone-800 mb-2">{title}</h3>
-                <p className="text-sm md:text-md text-stone-500 leading-relaxed">{desc}</p>
-              </motion.div>
+                <motion.div
+                  className="px-6"
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.18, duration: 0.4 }}
+                >
+                  <p className="text-md text-stone-500 leading-relaxed">{desc}</p>
+                </motion.div>
+              </div>
+            ))}
+          </div>
 
-            </div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.9 }}
+            className="text-center mt-16"
+          >
+            <Link
+              href="/services"
+              className="inline-flex items-center gap-2 text-sm md:text-lg font-bold text-brown tracking-widest uppercase hover:gap-4 transition-all duration-200"
+            >
+              了解完整服務 <FiArrowRight />
+            </Link>
+          </motion.div>
+        </div>
+
+        {/* Mobile: vertical layout, unchanged */}
+        <div className="md:hidden max-w-3xl mx-auto">
+          {steps.map(({ title, desc }, i) => (
+            <motion.div
+              key={title}
+              className={`py-10 ${i < steps.length - 1 ? 'border-b border-stone-100' : ''}`}
+              initial={{ opacity: 0, x: 28 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.18, duration: 0.4 }}
+            >
+              <div className="w-8 h-8 rounded-full bg-brown flex items-center justify-center shrink-0 mb-3">
+                <span className="text-white text-xs font-semibold">{i + 1}</span>
+              </div>
+              <h3 className="text-xl font-medium text-stone-800 mb-2">{title}</h3>
+              <p className="text-sm text-stone-500 leading-relaxed">{desc}</p>
+            </motion.div>
           ))}
 
-          {/* Link row */}
-          <div className="flex md:gap-12">
-            <div className="hidden md:block w-20 shrink-0" />
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.7 }}
-              className="pt-8"
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.7 }}
+            className="pt-8"
+          >
+            <Link
+              href="/services"
+              className="flex items-center gap-2 text-sm text-brown tracking-widest uppercase hover:gap-4 transition-all duration-200"
             >
-              <Link
-                href="/services"
-                className="flex items-center gap-2 text-sm md:text-md md:font-bold text-brown tracking-widest uppercase hover:gap-4 transition-all duration-200"
-              >
-                了解完整服務 <FiArrowRight />
-              </Link>
-            </motion.div>
-          </div>
+              了解完整服務 <FiArrowRight />
+            </Link>
+          </motion.div>
         </div>
       </div>
     </section>

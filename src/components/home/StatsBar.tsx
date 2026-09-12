@@ -22,7 +22,7 @@ export default function StatsBar() {
             className="text-center py-4"
           >
             <p className="text-2xl md:text-3xl md:font-normal font-light text-brown tracking-tight">{value}</p>
-            <p className="text-xs md:text-[14px] text-stone-400 tracking-widest uppercase mt-1">{label}</p>
+            <p className="text-xs md:text-lg text-stone-400 tracking-widest uppercase mt-1">{label}</p>
           </motion.div>
         ))}
       </div>

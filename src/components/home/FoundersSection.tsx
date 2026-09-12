@@ -36,12 +36,12 @@ export default function FoundersSection({ founders }: { founders: FounderContent
           className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6"
         >
           <div>
-            <p className="section-label mb-3 md:text-lg">創辦團隊</p>
+            <p className="section-label mb-3 md:text-xl">創辦團隊</p>
             <h2 className="section-title">帶著職人經歷，<br /><span className="text-brown font-[20px]">打造</span> <span className="hover:text-indigo transition-all duration-200">Pourfolio</span></h2>
           </div>
           <Link
             href="/about"
-            className="flex items-center gap-2 text-sm md:text-md md:font-bold text-brown tracking-widest uppercase hover:gap-4 transition-all duration-200 shrink-0"
+            className="flex items-center gap-2 text-sm md:text-lg md:font-bold text-brown tracking-widest uppercase hover:gap-4 transition-all duration-200 shrink-0"
           >
             品牌故事 <FiArrowRight />
           </Link>
@@ -110,7 +110,7 @@ export default function FoundersSection({ founders }: { founders: FounderContent
                 </div>
               </div>
               <div className="p-6">
-                <p className="text-brown text-xs tracking-widest uppercase mb-3">{tag}</p>
+                <p className="text-brown text-sm md:text-md tracking-widest uppercase mb-3">{tag}</p>
                 <p className="text-sm text-stone-500 leading-relaxed">{bio}</p>
               </div>
             </div>
