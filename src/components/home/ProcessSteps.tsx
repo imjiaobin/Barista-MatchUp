@@ -31,7 +31,7 @@ export default function ProcessSteps() {
             {steps.map(({ num, title, desc }, i) => (
               <div key={num} className="flex flex-col items-center text-center">
                 <motion.span
-                  className="block text-lg text-brown tracking-[0.25em] uppercase mb-3"
+                  className="block text-lg font-[400] text-brown tracking-[0.25em] uppercase mb-3"
                   initial={{ opacity: 0, y: 8 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -40,7 +40,7 @@ export default function ProcessSteps() {
                   {num}
                 </motion.span>
                 <motion.h3
-                  className="text-xl font-medium text-stone-800 mb-3"
+                  className="text-xl text-stone-800 mb-3"
                   initial={{ opacity: 0, y: 8 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -95,9 +95,9 @@ export default function ProcessSteps() {
           >
             <Link
               href="/services"
-              className="group inline-flex items-center gap-2 text-sm md:text-lg font-bold text-brown tracking-widest uppercase"
+              className="group inline-flex items-center gap-2 font-[450] text-sm md:text-lg text-brown tracking-widest uppercase"
             >
-              <span className="transition-transform duration-200 group-hover:-translate-x-1">了解完整服務</span>
+              <span className="transition-transform  duration-200 group-hover:-translate-x-1">了解完整服務</span>
               <FiArrowRight className="transition-transform duration-200 group-hover:translate-x-1" />
             </Link>
           </motion.div>
@@ -115,9 +115,9 @@ export default function ProcessSteps() {
               transition={{ delay: i * 0.18, duration: 0.4 }}
             >
               <div className="w-8 h-8 rounded-full bg-brown flex items-center justify-center shrink-0 mb-3">
-                <span className="text-white text-xs font-semibold">{i + 1}</span>
+                <span className="text-white text-xs ">{i + 1}</span>
               </div>
-              <h3 className="text-xl font-medium text-stone-800 mb-2">{title}</h3>
+              <h3 className="text-xl text-stone-800 mb-2">{title}</h3>
               <p className="text-sm text-stone-500 leading-relaxed">{desc}</p>
             </motion.div>
           ))}

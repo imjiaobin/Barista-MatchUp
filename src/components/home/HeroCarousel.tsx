@@ -44,12 +44,12 @@ export default function HeroCarousel({ slides }: { slides: HeroSlideContent[] })
               exit={{ opacity: 0, y: -16 }}
               transition={{ duration: 0.5 }}
             >
-              <p className="section-label md:text-xl mb-6">{slides[current].tag}</p>
+              <p className="section-label font-[350] md:text-xl mb-6">{slides[current].tag}</p>
               <h1 className="text-5xl md:text-7xl font-light text-stone-900 leading-[1.05] tracking-tight mb-8">
                 {slides[current].line1}<br />
                 <span className="text-brown">{slides[current].line2}</span>
               </h1>
-              <p className="text-stone-500 text-s md:text-lg leading-relaxed max-w-md mb-10">
+              <p className="text-stone-500 text-s font-[325] md:text-lg leading-relaxed max-w-md mb-10">
                 {slides[current].body.split('，')[0]}，
                 <br className="md:hidden" />
                 {slides[current].body.slice(slides[current].body.indexOf('，') + 1)}

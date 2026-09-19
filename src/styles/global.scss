@@ -4,17 +4,17 @@
 
 @layer base {
   body {
-    @apply bg-white text-stone-800 font-sans antialiased;
+    @apply bg-white text-stone-800 font-sans font-[350] antialiased;
   }
 }
 
 @layer components {
   .btn-primary {
-    @apply inline-block px-6 py-3 bg-brown text-white text-sm font-medium rounded-sm tracking-widest uppercase transition-all duration-200 transform-gpu hover:bg-opacity-90 hover:translate-y-[-2px];
+    @apply inline-block px-6 py-3 bg-brown text-white text-sm  rounded-sm tracking-widest uppercase transition-all duration-200 transform-gpu hover:bg-opacity-90 hover:translate-y-[-2px];
   }
 
   .btn-outline {
-    @apply inline-block px-6 py-3 border border-brown text-brown text-sm font-medium rounded-sm tracking-widest uppercase transition-all duration-200 hover:bg-brown hover:text-white;
+    @apply inline-block px-6 py-3 border border-brown text-brown text-sm rounded-sm tracking-widest uppercase transition-all duration-200 hover:bg-brown hover:text-white;
   }
 
   .section-title {
@@ -22,7 +22,7 @@
   }
 
   .section-label {
-    @apply text-xs tracking-[0.25em] uppercase text-olive font-medium;
+    @apply text-xs tracking-[0.25em] uppercase text-olive ;
   }
 
   .card-hover {

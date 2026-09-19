@@ -63,7 +63,7 @@ export default function Navbar() {
                   href={path}
                   onMouseEnter={() => setHoveredPath(path)}
                   onMouseLeave={() => setHoveredPath(null)}
-                  className="group relative block w-28 h-9 font-[525] text-sm tracking-widest uppercase"
+                  className="group relative block w-28 h-9 text-sm tracking-widest uppercase"
                 >
                   {/* Solid block that drops down from the nav on hover/active. The
                       link itself is vertically centered in the 64px-tall nav (14px

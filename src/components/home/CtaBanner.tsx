@@ -34,7 +34,7 @@ export default function CtaBanner() {
           href="/contact"
           onMouseEnter={() => setCtaHovered(true)}
           onMouseLeave={() => setCtaHovered(false)}
-          className="inline-flex items-center gap-1.5 px-10 py-4 bg-brown text-white text-sm md:text-lg rounded-sm tracking-widest uppercase hover: transition-colors duration-200"
+          className="inline-flex items-center gap-1.5 px-10 py-4 bg-brown text-white text-sm md:text-lg rounded-sm tracking-widest uppercase transition-colors duration-200"
         >
           <AnimatePresence mode="popLayout" initial={false}>
             {!ctaHovered && (

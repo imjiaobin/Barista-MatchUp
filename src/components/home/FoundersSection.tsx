@@ -41,7 +41,7 @@ export default function FoundersSection({ founders }: { founders: FounderContent
           </div>
           <Link
             href="/about"
-            className="group flex items-center gap-2 text-sm md:text-lg md:font-bold text-brown tracking-widest uppercase shrink-0"
+            className="group flex items-center gap-2 text-sm md:text-lg md:font-[450] text-brown tracking-widest uppercase shrink-0"
           >
             <span className="transition-transform duration-200 group-hover:-translate-x-1">品牌故事</span>
             <FiArrowRight className="transition-transform duration-200 group-hover:translate-x-1" />

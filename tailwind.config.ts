@@ -11,7 +11,7 @@ const config: Config = {
         cream: '#a4d1c8',
       },
       fontFamily: {
-        sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
+        sans: ['var(--font-inter)', 'var(--font-noto-sans-tc)', 'system-ui', 'sans-serif'],
       },
     },
   },
