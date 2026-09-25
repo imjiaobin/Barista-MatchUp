@@ -91,7 +91,7 @@ export async function sendContactNotification(input: ContactNotificationInput): 
   const html = `
     <h2>新的活動詢問 — ${escapeHtml(input.contactName)}</h2>
     ${sections.map(({ title, rows }) => `
-      <h3 style="margin-bottom:4px;color:#537d91;">${title}</h3>
+      <h3 style="margin-bottom:4px;color:#4E220F;">${title}</h3>
       <table cellpadding="6" style="border-collapse: collapse; margin-bottom: 16px;">
         ${rows.map(([label, value]) => `
           <tr>

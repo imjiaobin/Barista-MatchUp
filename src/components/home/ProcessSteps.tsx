@@ -58,7 +58,7 @@ export default function ProcessSteps() {
                     transition={{ duration: 0.4, delay: 0.4 + i * 0.2 }}
                   />
                   <motion.div
-                    className="w-4 h-4 rounded-full bg-[#f77754] shrink-0 mx-2"
+                    className="w-4 h-4 rounded-full bg-brown shrink-0 mx-2"
                     initial={{ scale: 0 }}
                     whileInView={{ scale: 1 }}
                     viewport={{ once: true }}

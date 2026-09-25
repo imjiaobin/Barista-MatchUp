@@ -3,7 +3,7 @@ import { FiInstagram, FiMail } from 'react-icons/fi'
 
 export default function Footer() {
   return (
-    <footer className="bg-indigo text-white/70">
+    <footer className="bg-olive text-white/70">
       <div className="max-w-6xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-3 gap-10">
         <div>
           <p className="text-white text-xl font-light tracking-[0.2em] mb-3">Pourfolio</p>

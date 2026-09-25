@@ -47,7 +47,7 @@ export default function HeroCarousel({ slides }: { slides: HeroSlideContent[] })
               <p className="section-label font-[350] md:text-xl mb-6">{slides[current].tag}</p>
               <h1 className="text-5xl md:text-7xl font-light text-stone-900 leading-[1.05] tracking-tight mb-8">
                 {slides[current].line1}<br />
-                <span className="text-brown">{slides[current].line2}</span>
+                <span className="text-olive">{slides[current].line2}</span>
               </h1>
               <p className="text-stone-500 text-s font-[325] md:text-lg leading-relaxed max-w-md mb-10">
                 {slides[current].body.split('，')[0]}，
@@ -55,8 +55,8 @@ export default function HeroCarousel({ slides }: { slides: HeroSlideContent[] })
                 {slides[current].body.slice(slides[current].body.indexOf('，') + 1)}
               </p>
               <div className="flex flex-wrap gap-4">
-                <Link href="/contact" className="btn-primary">立即諮詢</Link>
-                <Link href="/events" className="btn-outline">查看活動經歷</Link>
+                <Link href="/contact" className="btn-primary bg-olive">立即諮詢</Link>
+                <Link href="/events" className="btn-outline border-olive text-olive hover:bg-olive">查看活動經歷</Link>
               </div>
             </motion.div>
           </AnimatePresence>
@@ -69,7 +69,7 @@ export default function HeroCarousel({ slides }: { slides: HeroSlideContent[] })
                   key={i}
                   onClick={() => setCurrent(i)}
                   className={`h-0.5 rounded-full transition-all duration-300 ${
-                    i === current ? 'w-8 bg-brown' : 'w-4 bg-stone-200'
+                    i === current ? 'w-8 bg-olive' : 'w-4 bg-stone-200'
                   }`}
                 />
               ))}
@@ -77,13 +77,13 @@ export default function HeroCarousel({ slides }: { slides: HeroSlideContent[] })
             <div className="flex gap-1 ml-auto">
               <button
                 onClick={prev}
-                className="w-9 h-9 border border-stone-200 hover:border-brown flex items-center justify-center transition-colors duration-200 text-stone-400 hover:text-brown"
+                className="w-9 h-9 border border-stone-200 hover:border-olive flex items-center justify-center transition-colors duration-200 text-stone-400 hover:text-olive"
               >
                 <FiChevronLeft size={16} />
               </button>
               <button
                 onClick={next}
-                className="w-9 h-9 border border-stone-200 hover:border-brown flex items-center justify-center transition-colors duration-200 text-stone-400 hover:text-brown"
+                className="w-9 h-9 border border-stone-200 hover:border-olive flex items-center justify-center transition-colors duration-200 text-stone-400 hover:text-olive"
               >
                 <FiChevronRight size={16} />
               </button>

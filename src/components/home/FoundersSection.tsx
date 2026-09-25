@@ -13,8 +13,8 @@ export interface FounderContent {
 }
 
 const founderBackgrounds = [
-  'linear-gradient(155deg, #584b42 0%, #537d91 100%)',
-  'linear-gradient(155deg, #a4d1c8 0%, #537d91 100%)',
+  'linear-gradient(155deg, #607456 0%, #4E220F 100%)',
+  'linear-gradient(155deg, #F7F1DE 0%, #4E220F 100%)',
 ]
 
 const FOUNDER_SLANT = '56px'

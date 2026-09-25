@@ -5,10 +5,10 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        brown: '#f77754',
-        olive: '#584b42',
-        indigo: '#537d91',
-        cream: '#a4d1c8',
+        brown: '#9D6638',
+        olive: '#607456',
+        indigo: '#4E220F',
+        cream: '#F7F1DE',
       },
       fontFamily: {
         sans: ['var(--font-inter)', 'var(--font-noto-sans-tc)', 'system-ui', 'sans-serif'],

@@ -2,7 +2,9 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
+import logo from '../assets/PourFolio-logo-no-tagline.svg'
 import { motion, AnimatePresence } from 'framer-motion'
 import { FiArrowRight, FiMessageCircle } from 'react-icons/fi'
 import { HiMenuAlt3, HiX } from 'react-icons/hi'
@@ -49,8 +51,8 @@ export default function Navbar() {
       }`}
     >
       <nav className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-        <Link href="/" className="text-xl font-medium tracking-[0.2em] text-indigo">
-          Pourfolio
+        <Link href="/" className="flex items-center">
+          <Image src={logo} alt="Pourfolio" className="h-11 w-auto" priority unoptimized />
         </Link>
 
         {/* Desktop links */}
