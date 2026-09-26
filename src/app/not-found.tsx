@@ -6,7 +6,7 @@ import Link from 'next/link'
 export default function NotFound() {
   return (
     <section className="min-h-screen flex items-center justify-center px-6 bg-cream overflow-hidden">
-      {/* Large 404 background text */}
+      {/* 背景的大型 404 文字 */}
       <motion.div
         initial={{ opacity: 0, scale: 1.1 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -23,7 +23,7 @@ export default function NotFound() {
           transition={{ duration: 0.5 }}
           className="mb-8 flex justify-center"
         >
-          {/* Spilled coffee cup illustration */}
+          {/* 打翻咖啡杯的插畫 */}
           <div className="relative w-28 h-28">
             <div className="absolute inset-0 rounded-full bg-gradient-to-br from-brown/30 to-brown/10 border border-brown/20" />
             <motion.div
@@ -34,7 +34,7 @@ export default function NotFound() {
             >
               <span className="text-3xl">☕</span>
             </motion.div>
-            {/* Spill drops */}
+            {/* 灑落的水滴 */}
             {[{ top: '70%', left: '60%', size: 'w-3 h-3', delay: 0.6 },
               { top: '80%', left: '75%', size: 'w-2 h-2', delay: 0.7 },
               { top: '90%', left: '65%', size: 'w-1.5 h-1.5', delay: 0.8 }].map((drop, i) => (

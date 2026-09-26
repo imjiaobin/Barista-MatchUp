@@ -1,12 +1,14 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { FiInstagram, FiMail } from 'react-icons/fi'
+import logo from '../assets/PourFolio-logo-no-tagline.svg'
 
 export default function Footer() {
   return (
     <footer className="bg-olive text-white/70">
       <div className="max-w-6xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-3 gap-10">
         <div>
-          <p className="text-white text-xl font-light tracking-[0.2em] mb-3">Pourfolio</p>
+          <Image src={logo} alt="Pourfolio" className="h-7 w-auto mb-3 brightness-0 invert" unoptimized />
           <p className="text-sm leading-relaxed">
             專業咖啡師 × 精準活動媒合
             <br />

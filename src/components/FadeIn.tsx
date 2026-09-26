@@ -8,9 +8,9 @@ interface FadeInProps {
   className?: string
 }
 
-// Lightweight client wrapper so Server Components that fetch data (e.g. an
-// async page) can still apply the project's standard fade-up entrance
-// animation without themselves needing 'use client'.
+// 輕量的 client 包裝元件，讓需要抓資料的 Server Components（例如 async
+// 頁面）也能套用專案標準的「淡入 + 上移」進場動畫，而不用自己標記
+// 'use client'。
 export default function FadeIn({ children, delay = 0, className }: FadeInProps) {
   return (
     <motion.div

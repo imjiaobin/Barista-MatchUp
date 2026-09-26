@@ -21,9 +21,9 @@ interface FilterableGridProps<T> {
   countLabel: (count: number) => string
 }
 
-// Shared by /events and /baristas: both are "category filter tabs + animated
-// card grid" pages that only differ in what a card looks like — that part is
-// left to the caller via `renderCard`.
+// /events 和 /baristas 共用這個元件：兩者都是「分類篩選標籤 + 動畫卡片
+// 網格」的頁面，差別只在卡片長什麼樣子——這部分交給呼叫端透過
+// `renderCard` 自行決定。
 export default function FilterableGrid<T>({
   categories, items, itemCategory, itemKey, gridClassName, renderCard, countLabel,
 }: FilterableGridProps<T>) {
@@ -33,7 +33,7 @@ export default function FilterableGrid<T>({
 
   return (
     <>
-      {/* Filter */}
+      {/* 篩選標籤 */}
       <section className="sticky top-16 z-40 bg-white/95 backdrop-blur-sm border-b border-stone-100 px-6 py-4">
         <div className="max-w-6xl mx-auto flex gap-3 overflow-x-auto pb-1 scrollbar-none">
           {categories.map((cat) => (
@@ -52,7 +52,7 @@ export default function FilterableGrid<T>({
         </div>
       </section>
 
-      {/* Grid */}
+      {/* 卡片網格 */}
       <section className="py-16 px-6 bg-white">
         <div className="max-w-6xl mx-auto">
           <AnimatePresence mode="wait">

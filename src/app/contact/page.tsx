@@ -15,7 +15,7 @@ const fadeUp = {
 export default function Contact() {
   return (
     <>
-      {/* Hero */}
+      {/* 頁首主視覺 */}
       <section className="pt-32 pb-20 px-6 bg-white">
         <div className="max-w-6xl mx-auto">
           <motion.p custom={0} variants={fadeUp} initial="hidden" animate="visible" className="section-label mb-4">
@@ -30,10 +30,10 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* Form + Info */}
+      {/* 表單 + 聯絡資訊 */}
       <section className="py-16 px-6 bg-white">
         <div className="max-w-6xl mx-auto grid md:grid-cols-[1fr_2fr] gap-16">
-          {/* Contact info */}
+          {/* 聯絡資訊 */}
           <motion.div
             custom={0} variants={fadeUp} initial="hidden" animate="visible"
           >
@@ -58,7 +58,7 @@ export default function Contact() {
             </div>
           </motion.div>
 
-          {/* Form */}
+          {/* 表單 */}
           <motion.div custom={1} variants={fadeUp} initial="hidden" animate="visible" className="relative">
             <ContactWizard />
           </motion.div>

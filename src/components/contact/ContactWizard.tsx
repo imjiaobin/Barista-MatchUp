@@ -109,12 +109,12 @@ export default function ContactWizard() {
   useEffect(() => {
     try {
       const saved = sessionStorage.getItem(STORAGE_KEY)
-      // Restoring a draft from sessionStorage on mount is a one-time sync
-      // from an external system, not state derived from props/state.
+      // 掛載時從 sessionStorage 還原草稿，是從外部系統做的一次性同步，
+      // 不是從 props/state 衍生出來的狀態。
       // eslint-disable-next-line react-hooks/set-state-in-effect
       if (saved) setForm({ ...initialState, ...JSON.parse(saved) })
     } catch {
-      // ignore malformed/unavailable storage
+      // 忽略格式錯誤或無法使用的 storage
     }
     setRestored(true)
   }, [])
@@ -124,7 +124,7 @@ export default function ContactWizard() {
     try {
       sessionStorage.setItem(STORAGE_KEY, JSON.stringify(form))
     } catch {
-      // storage may be unavailable (private browsing) — draft persistence is best-effort
+      // storage 可能無法使用（例如無痕模式）—— 草稿保存只是盡力而為
     }
   }, [form, restored])
 
@@ -185,7 +185,7 @@ export default function ContactWizard() {
     setSubmitting(false)
     if (result.success) {
       setSubmitted(true)
-      try { sessionStorage.removeItem(STORAGE_KEY) } catch { /* best effort */ }
+      try { sessionStorage.removeItem(STORAGE_KEY) } catch { /* 盡力而為 */ }
     } else {
       setError(result.error ?? '送出失敗，請稍後再試')
     }
@@ -213,7 +213,7 @@ export default function ContactWizard() {
 
   return (
     <div>
-      {/* Progress */}
+      {/* 進度條 */}
       <div className="flex items-center gap-2 mb-2">
         {STEP_LABELS.map((label, i) => (
           <div key={label} className={`h-1.5 flex-1 rounded-full transition-colors duration-300 ${i <= step ? 'bg-brown' : 'bg-stone-300'}`} />
@@ -407,9 +407,9 @@ export default function ContactWizard() {
         </motion.div>
       </AnimatePresence>
 
-      {/* honeypot — display:none (not off-screen positioning) so browser
-          autofill skips it too; off-screen-but-visible inputs get filled by
-          Chrome's profile autofill even without a matching name/autocomplete. */}
+      {/* 蜜罐欄位 —— 用 display:none（不是移到畫面外的定位方式），
+          這樣瀏覽器的自動填入也會跳過它；移到畫面外但仍是可見狀態的欄位，
+          就算 name/autocomplete 沒對上，還是會被 Chrome 的個人資料自動填入。 */}
       <input
         type="text" value={form.website} onChange={(e) => set('website', e.target.value)}
         tabIndex={-1} autoComplete="off" aria-hidden="true"

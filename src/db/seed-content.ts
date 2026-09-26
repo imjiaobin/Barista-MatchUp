@@ -3,7 +3,7 @@ import { db } from './client'
 import { events, pageContent } from './schema'
 
 const contentRows: Array<{ page: string; sectionKey: string; label: string; content: string }> = [
-  // Home — hero carousel (3 slides)
+  // 首頁 —— 輪播主視覺（3 張投影片）
   { page: 'home', sectionKey: 'hero_1_tag', label: '輪播 1 · 標籤', content: '咖啡師媒合' },
   { page: 'home', sectionKey: 'hero_1_line1', label: '輪播 1 · 標題第一行', content: 'Pour your' },
   { page: 'home', sectionKey: 'hero_1_line2', label: '輪播 1 · 標題第二行', content: 'story.' },
@@ -16,7 +16,7 @@ const contentRows: Array<{ page: string; sectionKey: string; label: string; cont
   { page: 'home', sectionKey: 'hero_3_line1', label: '輪播 3 · 標題第一行', content: 'Elevate your' },
   { page: 'home', sectionKey: 'hero_3_line2', label: '輪播 3 · 標題第二行', content: 'brand.' },
   { page: 'home', sectionKey: 'hero_3_body', label: '輪播 3 · 說明文字', content: '讓咖啡師成為你活動最有記憶點的存在，一杯咖啡，一個品牌故事。' },
-  // Home — founders (2)
+  // 首頁 —— 創辦人（2 位）
   { page: 'home', sectionKey: 'founder_1_name', label: '創辦人 1 · 姓名', content: 'Hardy' },
   { page: 'home', sectionKey: 'founder_1_role', label: '創辦人 1 · 職稱', content: '共同創辦人' },
   { page: 'home', sectionKey: 'founder_1_tag', label: '創辦人 1 · 標籤', content: '2016 台灣手沖冠軍 · 木咖 Horoka Coffee 創辦人' },
@@ -25,7 +25,7 @@ const contentRows: Array<{ page: string; sectionKey: string; label: string; cont
   { page: 'home', sectionKey: 'founder_2_role', label: '創辦人 2 · 職稱', content: '共同創辦人 · 烘豆師' },
   { page: 'home', sectionKey: 'founder_2_tag', label: '創辦人 2 · 標籤', content: '烘豆師' },
   { page: 'home', sectionKey: 'founder_2_bio', label: '創辦人 2 · 簡介', content: '個人經歷資訊補充中。' },
-  // About — story paragraphs
+  // About 頁 —— 品牌故事段落
   { page: 'about', sectionKey: 'story_para_1', label: '起點段落 1', content: 'Pourfolio 源自一個簡單的觀察：優秀的咖啡師很多，值得被好好呈現的品牌活動也很多，但兩者之間始終缺少一座橋樑。' },
   { page: 'about', sectionKey: 'story_para_2', label: '起點段落 2', content: '我們是一群熱愛咖啡文化的人，深信一杯精心準備的咖啡能為活動帶來截然不同的溫度。Pourfolio 正是在這樣的信念下起步。' },
   { page: 'about', sectionKey: 'story_para_3', label: '起點段落 3', content: '我們不想只當仲介，而是成為真正懂咖啡、懂活動的媒合夥伴。每一次配對，都是對品質的承諾。' },

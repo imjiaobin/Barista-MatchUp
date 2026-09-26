@@ -19,14 +19,14 @@ const milestones = [
 
 export default function TimelineSection() {
   return (
-    <section className="py-24 px-6 bg-indigo text-white">
+    <section className="py-24 px-6 bg-olive text-white">
       <div className="max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }} transition={{ duration: 0.4 }}
           className="mb-16"
         >
-          <p className="section-label text-olive mb-3">我們的方向</p>
+          <p className="section-label text-cream mb-3">我們的方向</p>
           <h2 className="text-3xl md:text-4xl font-light">每一步，都是一杯好咖啡的距離</h2>
         </motion.div>
 
@@ -38,7 +38,7 @@ export default function TimelineSection() {
               viewport={{ once: true }}
               className="flex gap-8 items-start"
             >
-              <span className="text-olive text-lg font-light shrink-0 w-16">{year}</span>
+              <span className="text-cream text-lg font-light shrink-0 w-16">{year}</span>
               <div className="flex-1 border-t border-white/20 pt-4">
                 <p className="text-white/80 leading-relaxed">{event}</p>
               </div>

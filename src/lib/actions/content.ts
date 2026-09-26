@@ -16,8 +16,8 @@ export interface ContentFormState {
   success: boolean
 }
 
-// The admin content editor renders one <textarea name="content:{sectionKey}">
-// per row for a given page, so a single submit can update every field at once.
+// 後台的文案編輯器針對某個頁面的每一列，都會渲染一個
+// <textarea name="content:{sectionKey}">，所以一次送出就能同時更新所有欄位。
 export async function updatePageContent(page: string, revalidatePaths: string[], _prevState: ContentFormState, formData: FormData): Promise<ContentFormState> {
   await requireAdminSession()
 

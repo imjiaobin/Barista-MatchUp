@@ -41,9 +41,9 @@ const contactSchema = z.object({
   budgetRange: z.enum(BUDGET_RANGES).optional().or(z.literal('')),
   notes: optionalText(4000),
   preferredContactMethod: z.enum(PREFERRED_CONTACT_METHODS).optional().or(z.literal('')),
-  // Honeypot field: real visitors never fill this in (it's display:none, so
-  // browser autofill skips it too), so anything non-empty here is a bot —
-  // silently drop the submission below rather than failing validation.
+  // 蜜罐欄位：真實訪客絕對不會填這個（因為是 display:none，瀏覽器的
+  // 自動填入也會跳過它），所以只要這裡有值就代表是機器人——
+  // 下面會靜默丟棄這筆送出，而不是讓驗證直接失敗。
   website: z.string().optional(),
 }).refine((data) => new Date(data.eventEnd) >= new Date(data.eventStart), {
   message: '結束時間不能早於開始時間',
@@ -64,9 +64,9 @@ export async function submitContactInquiry(input: ContactFormInput): Promise<Con
   }
 
   if (parsed.data.website) {
-    // Honeypot tripped — report success without saving anything, but log it
-    // server-side so a false positive (e.g. autofill) leaves a trace instead
-    // of silently vanishing.
+    // 蜜罐欄位被觸發 —— 回報成功但不存任何資料，同時在伺服器端記錄一筆
+    // log，這樣如果是誤判（例如自動填入造成的），至少有留下痕跡，
+    // 不會就這樣悄悄消失。
     console.warn('Contact form honeypot tripped, submission dropped:', { contactEmail: parsed.data.contactEmail })
     return { success: true }
   }
@@ -97,8 +97,7 @@ export async function submitContactInquiry(input: ContactFormInput): Promise<Con
   try {
     await sendContactNotification(data)
   } catch (err) {
-    // The submission is already persisted; a failed notification email
-    // should never surface as a failure to the visitor.
+    // 這筆詢問已經寫入資料庫了；通知信寄送失敗不應該讓訪客看到失敗訊息。
     console.error('Failed to send contact notification email', err)
   }
 

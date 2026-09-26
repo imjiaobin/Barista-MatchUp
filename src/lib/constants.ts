@@ -1,8 +1,8 @@
-// Tailwind's JIT scanner only picks up class names that appear as literal
-// strings somewhere in `content`-scanned source. Gradient classes chosen in
-// the admin UI are stored as a preset id in the DB, then looked up here —
-// never interpolated from free text — so the actual class strings stay
-// static and visible to the build-time scanner.
+// Tailwind 的 JIT 掃描器只會抓取以「字面字串」形式出現在 `content` 掃描
+// 範圍內的 class 名稱。後台 UI 選的漸層 class，資料庫裡存的是預設樣式的
+// id，實際的 class 字串是在這裡查表對應出來的——絕對不是從自由文字內插
+// 組合出來的——這樣才能讓真正的 class 字串維持靜態，讓 build 時的
+// 掃描器看得到。
 export const EVENT_GRADIENT_PRESETS = [
   { id: 'brown-indigo', label: '暖棕 → 靛藍', className: 'from-brown/70 to-indigo' },
   { id: 'indigo-stone', label: '靛藍 → 石灰', className: 'from-indigo/80 to-stone-700' },

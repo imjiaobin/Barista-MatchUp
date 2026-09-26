@@ -5,7 +5,8 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        brown: '#9D6638',
+        brown: '#8B4513',
+        caramel: '#C68E5B',
         olive: '#607456',
         indigo: '#4E220F',
         cream: '#F7F1DE',

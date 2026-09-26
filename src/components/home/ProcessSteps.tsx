@@ -21,11 +21,11 @@ export default function ProcessSteps() {
           viewport={{ once: true }}
           className="mb-20 text-center"
         >
-          <p className="section-label md:text-xl mb-3">媒合流程</p>
+          <p className="section-label text-brown md:text-xl mb-3">媒合流程</p>
           <h2 className="section-title">四個步驟，一次完美的<br />咖啡師媒合體驗</h2>
         </motion.div>
 
-        {/* Desktop: horizontal layout — dots connected by a single line across the row */}
+        {/* 桌面版：橫向排列 —— 圓點之間用一條線橫向貫穿整排 */}
         <div className="hidden md:block">
           <div className="grid grid-cols-4">
             {steps.map(({ num, title, desc }, i) => (
@@ -58,7 +58,7 @@ export default function ProcessSteps() {
                     transition={{ duration: 0.4, delay: 0.4 + i * 0.2 }}
                   />
                   <motion.div
-                    className="w-4 h-4 rounded-full bg-brown shrink-0 mx-2"
+                    className="w-4 h-4 rounded-full bg-caramel shrink-0 mx-2"
                     initial={{ scale: 0 }}
                     whileInView={{ scale: 1 }}
                     viewport={{ once: true }}
@@ -103,7 +103,7 @@ export default function ProcessSteps() {
           </motion.div>
         </div>
 
-        {/* Mobile: vertical layout, unchanged */}
+        {/* 手機版：垂直排列，維持原樣 */}
         <div className="md:hidden max-w-3xl mx-auto">
           {steps.map(({ title, desc }, i) => (
             <motion.div
@@ -114,7 +114,7 @@ export default function ProcessSteps() {
               viewport={{ once: true }}
               transition={{ delay: i * 0.18, duration: 0.4 }}
             >
-              <div className="w-8 h-8 rounded-full bg-brown flex items-center justify-center shrink-0 mb-3">
+              <div className="w-8 h-8 rounded-full bg-caramel flex items-center justify-center shrink-0 mb-3">
                 <span className="text-white text-xs ">{i + 1}</span>
               </div>
               <h3 className="text-xl text-stone-800 mb-2">{title}</h3>

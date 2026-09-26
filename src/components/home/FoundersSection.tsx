@@ -36,7 +36,7 @@ export default function FoundersSection({ founders }: { founders: FounderContent
           className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6"
         >
           <div>
-            <p className="section-label mb-3 md:text-xl">創辦團隊</p>
+            <p className="section-label text-brown mb-3 md:text-xl">創辦團隊</p>
             <h2 className="section-title">帶著職人經歷，<br /><span className="text-brown font-[20px]">打造</span> <span className="hover:text-indigo transition-all duration-200">Pourfolio</span></h2>
           </div>
           <Link
@@ -48,7 +48,7 @@ export default function FoundersSection({ founders }: { founders: FounderContent
           </Link>
         </motion.div>
 
-        {/* Desktop: complementary trapezoids with hover expand/compress */}
+        {/* 桌面版：互補梯形卡片，hover 時展開/收縮 */}
         <div className="hidden md:flex gap-[2px] h-[560px]">
           {founders.map(({ name, role, tag, bio }, i) => {
             const isHovered = hoveredFounder === i
@@ -98,7 +98,7 @@ export default function FoundersSection({ founders }: { founders: FounderContent
           })}
         </div>
 
-        {/* Mobile: stacked cards, bio always visible (no hover on touch) */}
+        {/* 手機版：卡片堆疊排列，簡介一律顯示（觸控裝置沒有 hover） */}
         <div className="md:hidden space-y-6">
           {founders.map(({ name, role, tag, bio }, i) => (
             <div key={name} className="bg-white">

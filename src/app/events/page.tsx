@@ -20,7 +20,7 @@ export default async function Events() {
 
   return (
     <>
-      {/* Hero */}
+      {/* 頁首主視覺 */}
       <section className="pt-32 pb-20 px-6 bg-white">
         <div className="max-w-6xl mx-auto">
           <FadeIn>
@@ -40,7 +40,7 @@ export default async function Events() {
 
       <EventsGrid events={publishedEvents} />
 
-      {/* CTA */}
+      {/* 行動呼籲區塊 */}
       <section className="py-20 px-6 bg-stone-50">
         <FadeIn className="max-w-2xl mx-auto text-center">
           <p className="section-label mb-4">下一場，換你的品牌</p>

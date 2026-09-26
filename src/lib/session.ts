@@ -8,8 +8,8 @@ export async function getAdminSession() {
   return verifySessionToken(token)
 }
 
-// Defense in depth: admin Server Components/Actions re-check the session
-// themselves rather than relying solely on middleware.
+// 縱深防禦：後台的 Server Components/Actions 會自己重新檢查一次 session，
+// 而不是只依賴 middleware。
 export async function requireAdminSession() {
   const session = await getAdminSession()
   if (!session) {

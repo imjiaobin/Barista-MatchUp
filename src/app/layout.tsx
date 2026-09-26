@@ -11,13 +11,12 @@ const inter = Inter({
   variable: '--font-inter',
 })
 
-// Inter has no Chinese glyphs, so Chinese text falls through to the next
-// font in the stack. Without this, that fallback lands on the OS's default
-// CJK font, which typically only ships Regular/Bold faces — every Tailwind
-// weight in between (font-medium, the arbitrary font-[450]/font-[525], etc.)
-// then renders identically since the browser snaps to the nearest face it
-// actually has. `weight: 'variable'` pulls in the full weight axis so those
-// in-between weights render distinctly for Chinese text too.
+// Inter 沒有中文字形，所以中文字會落到字型堆疊的下一個字型。如果沒有這個
+// fallback 設定，中文字就會套用作業系統預設的 CJK 字型，這種字型通常只有
+// Regular/Bold 兩種字重——中間所有 Tailwind 的字重（font-medium、任意數值的
+// font-[450]/font-[525] 等）就會全部渲染成同一個樣子，因為瀏覽器只能套用
+// 最接近的既有字重。`weight: 'variable'` 會載入完整的可變字重範圍，
+// 讓中文字的這些中間字重也能正確顯示出差異。
 const notoSansTC = Noto_Sans_TC({
   weight: 'variable',
   style: ['normal'],

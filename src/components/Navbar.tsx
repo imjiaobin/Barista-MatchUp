@@ -55,7 +55,7 @@ export default function Navbar() {
           <Image src={logo} alt="Pourfolio" className="h-11 w-auto" priority unoptimized />
         </Link>
 
-        {/* Desktop links */}
+        {/* 桌面版導覽連結 */}
         <ul className="hidden md:flex items-center gap-2">
           {links.map(({ label, path }) => {
             const Icon = navIcons[path]
@@ -67,18 +67,17 @@ export default function Navbar() {
                   onMouseLeave={() => setHoveredPath(null)}
                   className="group relative block w-28 h-9 text-sm tracking-widest uppercase"
                 >
-                  {/* Solid block that drops down from the nav on hover/active. The
-                      link itself is vertically centered in the 64px-tall nav (14px
-                      gap above/below its own 36px box), so the pill extends 14px
-                      above the link to reach the top of the nav bar while its
-                      bottom edge stays put at the link's own bottom. */}
+                  {/* hover/active 時從 nav 頂部落下的色塊。這個連結本身
+                      在 64px 高的 nav 裡是垂直置中的（自己 36px 的框上下
+                      各留 14px 間距），所以這個色塊要往上多延伸 14px 才能
+                      碰到 nav 的頂部，底部則維持貼齊連結本身的底邊。 */}
                   <span
                     className={`absolute inset-x-0 -top-3.5 h-[50px] bg-brown rounded-b-lg origin-top transition-transform duration-300 ease-out ${
                       isActive(path) ? 'scale-y-100' : 'scale-y-0 group-hover:scale-y-100'
                     }`}
                   />
-                  {/* Content overlay shares the pill's exact box (same -top/height as
-                      the pill above) so the text/icon centers within it precisely */}
+                  {/* 內容疊層跟上面色塊用一模一樣的框（同樣的 -top/height），
+                      這樣文字/圖示才能精準置中在色塊裡 */}
                   <span className="absolute inset-x-0 -top-3.5 h-[50px] z-10 flex items-center justify-center gap-1">
                     <span
                       className={`transition-colors duration-300 ${
@@ -145,7 +144,7 @@ export default function Navbar() {
           </AnimatePresence>
         </Link>
 
-        {/* Mobile hamburger */}
+        {/* 手機版漢堡選單按鈕 */}
         <button
           className="md:hidden text-stone-700"
           onClick={() => setMenuOpen((v) => !v)}
@@ -155,7 +154,7 @@ export default function Navbar() {
         </button>
       </nav>
 
-      {/* Mobile menu */}
+      {/* 手機版選單 */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div

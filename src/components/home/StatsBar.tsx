@@ -21,7 +21,7 @@ export default function StatsBar() {
             transition={{ delay: i * 0.1 }}
             className="text-center py-4"
           >
-            <p className="text-2xl md:text-3xl md:font-normal font-light text-brown tracking-tight">{value}</p>
+            <p className="text-2xl md:text-3xl md:font-normal font-light text-olive tracking-tight">{value}</p>
             <p className="text-xs md:text-lg text-stone-400 tracking-widest uppercase mt-1">{label}</p>
           </motion.div>
         ))}

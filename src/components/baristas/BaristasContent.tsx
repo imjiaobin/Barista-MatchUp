@@ -39,7 +39,7 @@ function BaristaCard({ barista }: { barista: Barista }) {
     <div className={`group relative aspect-[3/4] bg-gradient-to-b ${grad} overflow-hidden cursor-pointer`}>
       <div className="absolute inset-0 bg-black/20 group-hover:bg-black/5 transition-colors duration-300" />
 
-      {/* Tags on hover */}
+      {/* hover 時顯示的標籤 */}
       <motion.div
         initial={{ opacity: 0, y: 12 }}
         whileHover={{ opacity: 1, y: 0 }}
@@ -64,7 +64,7 @@ function BaristaCard({ barista }: { barista: Barista }) {
 export default function BaristasContent() {
   return (
     <>
-      {/* Hero */}
+      {/* 頁首主視覺 */}
       <section className="pt-32 pb-20 px-6 bg-white">
         <div className="max-w-6xl mx-auto">
           <motion.p custom={0} variants={fadeUp} initial="hidden" animate="visible" className="section-label mb-4">
@@ -89,7 +89,7 @@ export default function BaristasContent() {
         countLabel={(count) => `目前顯示 ${count} 位咖啡師 · 持續擴充中`}
       />
 
-      {/* Join CTA */}
+      {/* 加入平台呼籲區塊 */}
       <section className="py-20 px-6 bg-stone-50">
         <motion.div
           initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
