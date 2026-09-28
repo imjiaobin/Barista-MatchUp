@@ -14,14 +14,14 @@ export default function ServicesHero() {
   return (
     <section className="pt-32 pb-20 px-6 bg-white">
       <div className="max-w-6xl mx-auto">
-        <motion.p custom={0} variants={fadeUp} initial="hidden" animate="visible" className="section-label mb-4">
+        <motion.p custom={0} variants={fadeUp} initial="hidden" animate="visible" className="section-label mb-4 text-brown md:text-xl">
           服務項目
         </motion.p>
         <motion.h1 custom={1} variants={fadeUp} initial="hidden" animate="visible"
           className="text-5xl md:text-7xl font-light text-stone-800 leading-[1.1] tracking-tight"
         >
           從媒合到落地，<br />
-          <span className="text-olive italic">一站到位</span>
+          <span className="text-caramel italic">一站到位</span>
         </motion.h1>
       </div>
     </section>

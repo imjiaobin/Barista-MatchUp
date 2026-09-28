@@ -56,7 +56,7 @@ export default function Navbar() {
         </Link>
 
         {/* 桌面版導覽連結 */}
-        <ul className="hidden md:flex items-center gap-2">
+        <ul className="hidden lg:flex items-center gap-2">
           {links.map(({ label, path }) => {
             const Icon = navIcons[path]
             return (
@@ -109,7 +109,7 @@ export default function Navbar() {
           href="/contact"
           onMouseEnter={() => setCtaHovered(true)}
           onMouseLeave={() => setCtaHovered(false)}
-          className="hidden md:inline-flex items-center gap-1.5 btn-primary text-xs py-2 px-5 hover:bg-opacity-100 hover:translate-y-0 hover:scale-[1.03]"
+          className="hidden lg:inline-flex items-center gap-1.5 btn-primary text-xs py-2 px-5 hover:bg-opacity-100 hover:translate-y-0 hover:scale-[1.03] whitespace-nowrap"
         >
           <AnimatePresence mode="popLayout" initial={false}>
             {!ctaHovered && (
@@ -146,7 +146,7 @@ export default function Navbar() {
 
         {/* 手機版漢堡選單按鈕 */}
         <button
-          className="md:hidden text-stone-700"
+          className="lg:hidden text-stone-700"
           onClick={() => setMenuOpen((v) => !v)}
           aria-label="Toggle menu"
         >
@@ -162,7 +162,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.2 }}
-            className="md:hidden bg-stone-50/95 backdrop-blur-md border-t border-stone-200 px-6 py-6 flex flex-col gap-4 shadow-lg"
+            className="lg:hidden bg-stone-50/95 backdrop-blur-md border-t border-stone-200 px-6 py-6 flex flex-col gap-4 shadow-lg"
           >
             {links.map(({ label, path }) => {
               const Icon = navIcons[path]

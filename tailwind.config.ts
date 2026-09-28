@@ -6,7 +6,7 @@ const config: Config = {
     extend: {
       colors: {
         brown: '#8B4513',
-        caramel: '#C68E5B',
+        caramel: '#b5592a',
         olive: '#607456',
         indigo: '#4E220F',
         cream: '#F7F1DE',

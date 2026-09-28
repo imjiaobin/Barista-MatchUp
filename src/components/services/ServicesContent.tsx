@@ -2,7 +2,6 @@
 
 import ProcessSection from './ProcessSection'
 import ServiceCards from './ServiceCards'
-import ServicesCta from './ServicesCta'
 import ServicesHero from './ServicesHero'
 
 export default function ServicesContent() {
@@ -11,7 +10,6 @@ export default function ServicesContent() {
       <ServicesHero />
       <ServiceCards />
       <ProcessSection />
-      <ServicesCta />
     </>
   )
 }

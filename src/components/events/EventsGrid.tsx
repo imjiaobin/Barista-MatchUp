@@ -43,6 +43,7 @@ export default function EventsGrid({ events }: { events: Event[] }) {
       gridClassName="grid grid-cols-1 md:grid-cols-3 gap-6"
       renderCard={(event) => <EventCard event={event} />}
       countLabel={(count) => `目前顯示 ${count} 場活動 · 持續更新中`}
+      multiSelect
     />
   )
 }

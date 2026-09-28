@@ -1,6 +1,8 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Link from 'next/link'
+import { FiArrowRight } from 'react-icons/fi'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -19,15 +21,24 @@ const process = [
 
 export default function ProcessSection() {
   return (
-    <section className="py-24 px-6 bg-indigo">
+    <section className="py-24 px-6 bg-brown">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }} transition={{ duration: 0.4 }}
-          className="mb-16"
+          className="flex flex-col md:flex-row md:items-start justify-between gap-6 mb-16"
         >
-          <p className="section-label text-olive mb-3">合作流程</p>
-          <h2 className="text-3xl md:text-4xl font-light text-white">四個步驟，完成你的<br />完美咖啡活動</h2>
+          <div>
+            <p className="section-label text-cream mb-3 md:text-lg">合作流程</p>
+            <h2 className="text-3xl md:text-4xl font-light text-white">四個步驟，完成你的<br />完美咖啡活動</h2>
+          </div>
+          <Link
+            href="/contact"
+            className="group flex items-center gap-2 text-sm md:text-lg md:font-[450] text-white tracking-widest uppercase shrink-0"
+          >
+            <span className="transition-transform duration-200 group-hover:-translate-x-1">填寫需求表單</span>
+            <FiArrowRight className="transition-transform duration-200 group-hover:translate-x-1" />
+          </Link>
         </motion.div>
 
         <div className="grid md:grid-cols-4 gap-8">
@@ -39,7 +50,7 @@ export default function ProcessSection() {
               className="relative"
             >
               {i < process.length - 1 && (
-                <div className="hidden md:block absolute top-6 left-full w-full h-px bg-white/10 -translate-y-1/2" />
+                <div className="hidden md:block absolute top-0 left-full h-full w-px bg-white/10 translate-x-4" />
               )}
               <p className="text-5xl font-light text-white/20 mb-4">{step}</p>
               <h3 className="text-white font-medium mb-2">{title}</h3>
