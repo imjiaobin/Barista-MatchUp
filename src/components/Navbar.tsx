@@ -72,7 +72,7 @@ export default function Navbar() {
                       各留 14px 間距），所以這個色塊要往上多延伸 14px 才能
                       碰到 nav 的頂部，底部則維持貼齊連結本身的底邊。 */}
                   <span
-                    className={`absolute inset-x-0 -top-3.5 h-[50px] bg-brown rounded-b-lg origin-top transition-transform duration-300 ease-out ${
+                    className={`absolute inset-x-0 -top-3.5 h-[50px] bg-caramel rounded-b-lg origin-top transition-transform duration-300 ease-out ${
                       isActive(path) ? 'scale-y-100' : 'scale-y-0 group-hover:scale-y-100'
                     }`}
                   />
@@ -172,7 +172,7 @@ export default function Navbar() {
                   href={path}
                   onClick={() => setMenuOpen(false)}
                   className={`flex items-center gap-2 font-[450] text-sm tracking-widest uppercase ${
-                    isActive(path) ? 'text-brown' : 'text-stone-500'
+                    isActive(path) ? 'text-caramel' : 'text-stone-500'
                   }`}
                 >
                   <Icon size={16} />

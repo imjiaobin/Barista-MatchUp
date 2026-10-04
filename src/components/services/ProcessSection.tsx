@@ -21,7 +21,7 @@ const process = [
 
 export default function ProcessSection() {
   return (
-    <section className="py-24 px-6 bg-brown">
+    <section className="py-24 px-6 bg-stone-50">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
@@ -29,14 +29,14 @@ export default function ProcessSection() {
           className="flex flex-col md:flex-row md:items-start justify-between gap-6 mb-16"
         >
           <div>
-            <p className="section-label text-cream mb-3 md:text-lg">合作流程</p>
-            <h2 className="text-3xl md:text-4xl font-light text-white">四個步驟，完成你的<br />完美咖啡活動</h2>
+            <p className="section-label text-caramel mb-3 md:text-lg">合作流程</p>
+            <h2 className="text-3xl md:text-4xl font-light text-espresso">四個步驟，完成你的<br />完美咖啡活動</h2>
           </div>
           <Link
             href="/contact"
-            className="group flex items-center gap-2 text-sm md:text-lg md:font-[450] text-white tracking-widest uppercase shrink-0"
+            className="group flex items-center gap-2 text-sm text-caramel md:text-lg md:font-[450] tracking-widest uppercase shrink-0"
           >
-            <span className="transition-transform duration-200 group-hover:-translate-x-1">填寫需求表單</span>
+            <span className=" transition-transform duration-200 group-hover:-translate-x-1">填寫需求表單</span>
             <FiArrowRight className="transition-transform duration-200 group-hover:translate-x-1" />
           </Link>
         </motion.div>
@@ -50,11 +50,11 @@ export default function ProcessSection() {
               className="relative"
             >
               {i < process.length - 1 && (
-                <div className="hidden md:block absolute top-0 left-full h-full w-px bg-white/10 translate-x-4" />
+                <div className="hidden md:block absolute top-0 left-full h-full w-px bg-caramel/10 translate-x-4" />
               )}
-              <p className="text-5xl font-light text-white/20 mb-4">{step}</p>
-              <h3 className="text-white font-medium mb-2">{title}</h3>
-              <p className="text-sm text-white/50 leading-relaxed">{desc}</p>
+              <p className="text-5xl font-light text-mocha mb-4">{step}</p>
+              <h3 className="text-espresso font-medium mb-2">{title}</h3>
+              <p className="text-sm text-stone-500 leading-relaxed">{desc}</p>
             </motion.div>
           ))}
         </div>

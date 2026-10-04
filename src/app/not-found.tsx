@@ -25,12 +25,12 @@ export default function NotFound() {
         >
           {/* 打翻咖啡杯的插畫 */}
           <div className="relative w-28 h-28">
-            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-brown/30 to-brown/10 border border-brown/20" />
+            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-caramel/30 to-caramel/10 border border-caramel/20" />
             <motion.div
               initial={{ rotate: 0 }}
               animate={{ rotate: -30 }}
               transition={{ duration: 0.8, delay: 0.3, type: 'spring' }}
-              className="absolute inset-4 rounded-full bg-gradient-to-br from-brown to-stone-700 flex items-center justify-center"
+              className="absolute inset-4 rounded-full bg-gradient-to-br from-caramel to-stone-700 flex items-center justify-center"
             >
               <span className="text-3xl">☕</span>
             </motion.div>
@@ -43,7 +43,7 @@ export default function NotFound() {
                 initial={{ opacity: 0, scale: 0 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: drop.delay }}
-                className={`absolute ${drop.size} rounded-full bg-brown/40`}
+                className={`absolute ${drop.size} rounded-full bg-caramel/40`}
                 style={{ top: drop.top, left: drop.left }}
               />
             ))}

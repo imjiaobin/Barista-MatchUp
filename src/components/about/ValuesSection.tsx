@@ -25,7 +25,7 @@ export default function ValuesSection() {
           viewport={{ once: true }} transition={{ duration: 0.4 }}
           className="mb-16"
         >
-          <p className="section-label text-brown md:text-base mb-3">品牌核心</p>
+          <p className="section-label text-caramel md:text-lg mb-3">品牌核心</p>
           <h2 className="section-title">三個字，貫穿我們<br />所有的決策</h2>
         </motion.div>
 
@@ -37,8 +37,8 @@ export default function ValuesSection() {
               viewport={{ once: true }}
               className="bg-white p-10"
             >
-              <p className="text-6xl font-light text-stone-100 mb-6">0{i + 1}</p>
-              <h3 className="text-2xl font-light text-indigo mb-4">{title}</h3>
+              <p className="text-6xl font-light text-caramel/50 mb-6">0{i + 1}</p>
+              <h3 className="text-2xl text-espresso mb-4">{title}</h3>
               <p className="text-sm text-stone-500 leading-relaxed">{desc}</p>
             </motion.div>
           ))}

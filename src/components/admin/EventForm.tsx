@@ -21,7 +21,7 @@ export default function EventForm({ event, action }: EventFormProps) {
         <label className="text-xs tracking-widest uppercase text-stone-400">標題</label>
         <input
           name="title" defaultValue={event?.title} required
-          className="border border-stone-200 px-4 py-3 text-sm bg-white focus:outline-none focus:border-brown"
+          className="border border-stone-200 px-4 py-3 text-sm bg-white focus:outline-none focus:border-caramel"
         />
       </div>
 
@@ -30,14 +30,14 @@ export default function EventForm({ event, action }: EventFormProps) {
           <label className="text-xs tracking-widest uppercase text-stone-400">日期</label>
           <input
             name="eventDate" type="date" defaultValue={event?.eventDate} required
-            className="border border-stone-200 px-4 py-3 text-sm bg-white focus:outline-none focus:border-brown"
+            className="border border-stone-200 px-4 py-3 text-sm bg-white focus:outline-none focus:border-caramel"
           />
         </div>
         <div className="flex flex-col gap-2">
           <label className="text-xs tracking-widest uppercase text-stone-400">地點</label>
           <input
             name="location" defaultValue={event?.location} required
-            className="border border-stone-200 px-4 py-3 text-sm bg-white focus:outline-none focus:border-brown"
+            className="border border-stone-200 px-4 py-3 text-sm bg-white focus:outline-none focus:border-caramel"
           />
         </div>
       </div>
@@ -47,7 +47,7 @@ export default function EventForm({ event, action }: EventFormProps) {
           <label className="text-xs tracking-widest uppercase text-stone-400">分類</label>
           <select
             name="category" defaultValue={event?.category ?? EVENT_CATEGORIES[0]} required
-            className="border border-stone-200 px-4 py-3 text-sm bg-white focus:outline-none focus:border-brown"
+            className="border border-stone-200 px-4 py-3 text-sm bg-white focus:outline-none focus:border-caramel"
           >
             {EVENT_CATEGORIES.map((cat) => <option key={cat} value={cat}>{cat}</option>)}
           </select>
@@ -56,7 +56,7 @@ export default function EventForm({ event, action }: EventFormProps) {
           <label className="text-xs tracking-widest uppercase text-stone-400">背景配色</label>
           <select
             name="gradientPreset" defaultValue={event?.gradientPreset ?? EVENT_GRADIENT_PRESETS[0].id} required
-            className="border border-stone-200 px-4 py-3 text-sm bg-white focus:outline-none focus:border-brown"
+            className="border border-stone-200 px-4 py-3 text-sm bg-white focus:outline-none focus:border-caramel"
           >
             {EVENT_GRADIENT_PRESETS.map((p) => <option key={p.id} value={p.id}>{p.label}</option>)}
           </select>
@@ -67,7 +67,7 @@ export default function EventForm({ event, action }: EventFormProps) {
         <label className="text-xs tracking-widest uppercase text-stone-400">活動說明</label>
         <textarea
           name="summary" defaultValue={event?.summary} rows={4} required
-          className="border border-stone-200 px-4 py-3 text-sm bg-white focus:outline-none focus:border-brown resize-none"
+          className="border border-stone-200 px-4 py-3 text-sm bg-white focus:outline-none focus:border-caramel resize-none"
         />
       </div>
 

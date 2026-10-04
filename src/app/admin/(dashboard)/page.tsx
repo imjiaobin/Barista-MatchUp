@@ -22,8 +22,8 @@ export default async function AdminDashboardPage() {
       <h1 className="text-2xl font-light text-stone-800 mb-8">後台總覽</h1>
       <div className="grid sm:grid-cols-2 gap-4">
         {cards.map(({ label, value, href }) => (
-          <Link key={label} href={href} className="bg-white border border-stone-200 p-6 hover:border-brown transition-colors duration-200">
-            <p className="text-3xl font-light text-brown">{value}</p>
+          <Link key={label} href={href} className="bg-white border border-stone-200 p-6 hover:border-caramel transition-colors duration-200">
+            <p className="text-3xl font-light text-caramel">{value}</p>
             <p className="text-sm text-stone-500 mt-2">{label}</p>
           </Link>
         ))}

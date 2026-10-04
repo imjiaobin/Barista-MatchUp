@@ -3,22 +3,22 @@ import Chip from './Chip'
 import { inputClass, labelClass } from './formStyles'
 import type { FormState, SetField } from './types'
 
-export default function BudgetStep({ form, set }: { form: FormState; set: SetField }) {
+export default function Step5({ form, set }: { form: FormState; set: SetField }) {
   return (
     <>
       <div className="flex flex-col gap-2">
-        <label className={labelClass}>預算範圍</label>
+        <label className={labelClass}>預算範圍 <span className="text-red-500">*</span></label>
         <div className="flex flex-wrap gap-2">
           {BUDGET_RANGES.map((t) => (
-            <Chip key={t} label={t} active={form.budgetRange === t} onClick={() => set('budgetRange', form.budgetRange === t ? '' : t)} />
+            <Chip key={t} label={t} active={form.budgetRange === t} onClick={() => set('budgetRange', t)} />
           ))}
         </div>
       </div>
       <div className="flex flex-col gap-2">
-        <label className={labelClass}>希望的聯繫方式</label>
+        <label className={labelClass}>希望的聯繫方式 <span className="text-red-500">*</span></label>
         <div className="flex flex-wrap gap-2">
           {PREFERRED_CONTACT_METHODS.map((t) => (
-            <Chip key={t} label={t} active={form.preferredContactMethod === t} onClick={() => set('preferredContactMethod', form.preferredContactMethod === t ? '' : t)} />
+            <Chip key={t} label={t} active={form.preferredContactMethod === t} onClick={() => set('preferredContactMethod', t)} />
           ))}
         </div>
       </div>

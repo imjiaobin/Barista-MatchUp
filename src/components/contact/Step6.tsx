@@ -1,6 +1,6 @@
 import type { FormState } from './types'
 
-export default function ReviewStep({ form }: { form: FormState }) {
+export default function Step6({ form }: { form: FormState }) {
   const rows: [string, string][] = [
     ['聯絡人 / 公司單位', form.contactName],
     ['聯絡電話', form.contactPhone],

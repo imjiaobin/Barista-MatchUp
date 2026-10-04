@@ -70,8 +70,8 @@ export default function FilterableGrid<T>({
               onClick={() => (multiSelect ? toggleTag(cat) : setActive(cat))}
               className={`shrink-0 px-5 py-2 rounded-full text-xs tracking-widest uppercase transition-all duration-200 ${
                 isActive(cat)
-                  ? 'bg-brown text-white'
-                  : 'border border-stone-200 text-stone-500 hover:border-brown hover:text-brown'
+                  ? 'bg-caramel text-white'
+                  : 'border border-stone-200 text-stone-500 hover:border-caramel hover:text-caramel'
               }`}
             >
               {cat}

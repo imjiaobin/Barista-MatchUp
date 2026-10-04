@@ -4,12 +4,12 @@
 // 組合出來的——這樣才能讓真正的 class 字串維持靜態，讓 build 時的
 // 掃描器看得到。
 export const EVENT_GRADIENT_PRESETS = [
-  { id: 'brown-indigo', label: '暖棕 → 靛藍', className: 'from-brown/70 to-indigo' },
-  { id: 'indigo-stone', label: '靛藍 → 石灰', className: 'from-indigo/80 to-stone-700' },
-  { id: 'olive-indigo', label: '橄欖 → 靛藍', className: 'from-olive/70 to-indigo' },
+  { id: 'brown-indigo', label: '暖棕 → 靛藍', className: 'from-caramel/70 to-espresso' },
+  { id: 'indigo-stone', label: '靛藍 → 石灰', className: 'from-espresso/80 to-stone-700' },
+  { id: 'olive-indigo', label: '橄欖 → 靛藍', className: 'from-olive/70 to-espresso' },
   { id: 'stone-olive', label: '石灰 → 橄欖', className: 'from-stone-600 to-olive/80' },
-  { id: 'brown-olive', label: '暖棕 → 橄欖', className: 'from-brown/50 to-olive' },
-  { id: 'indigo-brown', label: '靛藍 → 暖棕', className: 'from-indigo/60 to-brown' },
+  { id: 'brown-olive', label: '暖棕 → 橄欖', className: 'from-caramel/50 to-olive' },
+  { id: 'indigo-brown', label: '靛藍 → 暖棕', className: 'from-espresso/60 to-caramel' },
 ] as const
 
 export type EventGradientPresetId = (typeof EVENT_GRADIENT_PRESETS)[number]['id']

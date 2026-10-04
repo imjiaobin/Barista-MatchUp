@@ -13,13 +13,13 @@ function dailyAverageHint(start: string, end: string, cupCount: string): string 
   return `共 ${days} 天，約每日 ${Math.ceil(n / days)} 杯`
 }
 
-interface ServiceNeedsStepProps {
+interface Step3Props {
   form: FormState
   set: SetField
   toggleDrinkType: (type: string) => void
 }
 
-export default function ServiceNeedsStep({ form, set, toggleDrinkType }: ServiceNeedsStepProps) {
+export default function Step3({ form, set, toggleDrinkType }: Step3Props) {
   const dailyHint = dailyAverageHint(form.eventStart, form.eventEnd, form.cupCount)
 
   return (

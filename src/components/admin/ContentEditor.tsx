@@ -24,7 +24,7 @@ export default function ContentEditor({ title, rows, action }: ContentEditorProp
             <label className="text-xs tracking-widest uppercase text-stone-400">{row.label}</label>
             <textarea
               name={`content:${row.sectionKey}`} defaultValue={row.content} rows={2}
-              className="border border-stone-200 px-4 py-3 text-sm bg-white focus:outline-none focus:border-brown resize-none"
+              className="border border-stone-200 px-4 py-3 text-sm bg-white focus:outline-none focus:border-caramel resize-none"
             />
           </div>
         ))}

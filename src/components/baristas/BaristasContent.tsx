@@ -1,7 +1,9 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import baristasHeroImg from '../../assets/hero-3.jpg'
 import FilterableGrid from '../shared/FilterableGrid'
+import HeroImage from '../shared/HeroImage'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -23,14 +25,14 @@ interface Barista {
 }
 
 const baristas: Barista[] = [
-  { name: '林宜蓁', specialty: '精品單品', location: '台北', tags: ['手沖', '濾掛', '產地溯源'], grad: 'from-brown/70 to-indigo', cat: '精品單品' },
-  { name: '陳書逸', specialty: '義式濃縮', location: '台中', tags: ['義式', '奶泡技術', '競賽選手'], grad: 'from-indigo/80 to-stone-700', cat: '義式濃縮' },
-  { name: '王怡萱', specialty: '拉花藝術', location: '台北', tags: ['拉花', '藝術造型', '教學經驗'], grad: 'from-olive/70 to-indigo', cat: '拉花藝術' },
+  { name: '林宜蓁', specialty: '精品單品', location: '台北', tags: ['手沖', '濾掛', '產地溯源'], grad: 'from-caramel/70 to-espresso', cat: '精品單品' },
+  { name: '陳書逸', specialty: '義式濃縮', location: '台中', tags: ['義式', '奶泡技術', '競賽選手'], grad: 'from-espresso/80 to-stone-700', cat: '義式濃縮' },
+  { name: '王怡萱', specialty: '拉花藝術', location: '台北', tags: ['拉花', '藝術造型', '教學經驗'], grad: 'from-olive/70 to-espresso', cat: '拉花藝術' },
   { name: '吳承恩', specialty: '冷萃特調', location: '高雄', tags: ['冷萃', '氮氣咖啡', '調飲創作'], grad: 'from-stone-600 to-olive/80', cat: '冷萃特調' },
-  { name: '蔡明哲', specialty: '品牌策劃', location: '台北', tags: ['品牌聯名', '菜單設計', '活動執行'], grad: 'from-brown/50 to-olive', cat: '品牌策劃' },
-  { name: '許雅婷', specialty: '精品單品', location: '新竹', tags: ['虹吸壺', '杯測', '農場直採'], grad: 'from-indigo/60 to-brown', cat: '精品單品' },
-  { name: '劉建宏', specialty: '義式濃縮', location: '台南', tags: ['義式', '豆單規劃', '培訓師'], grad: 'from-olive/50 to-indigo', cat: '義式濃縮' },
-  { name: '張美玲', specialty: '拉花藝術', location: '台北', tags: ['圖案拉花', '比賽金獎', '示範教學'], grad: 'from-brown/80 to-stone-600', cat: '拉花藝術' },
+  { name: '蔡明哲', specialty: '品牌策劃', location: '台北', tags: ['品牌聯名', '菜單設計', '活動執行'], grad: 'from-caramel/50 to-olive', cat: '品牌策劃' },
+  { name: '許雅婷', specialty: '精品單品', location: '新竹', tags: ['虹吸壺', '杯測', '農場直採'], grad: 'from-espresso/60 to-caramel', cat: '精品單品' },
+  { name: '劉建宏', specialty: '義式濃縮', location: '台南', tags: ['義式', '豆單規劃', '培訓師'], grad: 'from-olive/50 to-espresso', cat: '義式濃縮' },
+  { name: '張美玲', specialty: '拉花藝術', location: '台北', tags: ['圖案拉花', '比賽金獎', '示範教學'], grad: 'from-caramel/80 to-stone-600', cat: '拉花藝術' },
 ]
 
 function BaristaCard({ barista }: { barista: Barista }) {
@@ -65,17 +67,20 @@ export default function BaristasContent() {
   return (
     <>
       {/* 頁首主視覺 */}
-      <section className="pt-32 pb-20 px-6 bg-white">
-        <div className="max-w-6xl mx-auto">
-          <motion.p custom={0} variants={fadeUp} initial="hidden" animate="visible" className="section-label mb-4">
-            咖啡師介紹
-          </motion.p>
-          <motion.h1 custom={1} variants={fadeUp} initial="hidden" animate="visible"
-            className="text-5xl md:text-7xl font-light text-stone-800 leading-[1.1] tracking-tight"
-          >
-            每一位，都是<br />
-            <span className="text-brown italic">故事的述說者</span>
-          </motion.h1>
+      <section className="relative overflow-hidden bg-white">
+        <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-[1.15fr_1fr] items-stretch md:min-h-[480px]">
+          <div className="relative z-10 flex flex-col justify-center py-32 md:py-24 md:pr-16">
+            <motion.p custom={0} variants={fadeUp} initial="hidden" animate="visible" className="section-label mb-4">
+              咖啡師介紹
+            </motion.p>
+            <motion.h1 custom={1} variants={fadeUp} initial="hidden" animate="visible"
+              className="text-5xl md:text-7xl font-light text-stone-800 leading-[1.1] tracking-tight"
+            >
+              每一位，都是<br />
+              <span className="text-caramel italic">故事的述說者</span>
+            </motion.h1>
+          </div>
+          <HeroImage src={baristasHeroImg} alt="咖啡師微笑沖煮咖啡" priority />
         </div>
       </section>
 

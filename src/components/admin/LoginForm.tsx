@@ -14,14 +14,14 @@ export default function LoginForm() {
         <label className="text-xs tracking-widest uppercase text-stone-400">帳號</label>
         <input
           name="username" required autoFocus
-          className="border border-stone-200 px-4 py-3 text-sm text-stone-700 bg-transparent focus:outline-none focus:border-brown transition-colors duration-200"
+          className="border border-stone-200 px-4 py-3 text-sm text-stone-700 bg-transparent focus:outline-none focus:border-caramel transition-colors duration-200"
         />
       </div>
       <div className="flex flex-col gap-2">
         <label className="text-xs tracking-widest uppercase text-stone-400">密碼</label>
         <input
           name="password" type="password" required
-          className="border border-stone-200 px-4 py-3 text-sm text-stone-700 bg-transparent focus:outline-none focus:border-brown transition-colors duration-200"
+          className="border border-stone-200 px-4 py-3 text-sm text-stone-700 bg-transparent focus:outline-none focus:border-caramel transition-colors duration-200"
         />
       </div>
       {state.error && <p className="text-sm text-red-600">{state.error}</p>}

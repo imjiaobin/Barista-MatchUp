@@ -3,7 +3,7 @@ import Chip from './Chip'
 import { inputClass, labelClass } from './formStyles'
 import type { FormState, SetField } from './types'
 
-export default function EventInfoStep({ form, set }: { form: FormState; set: SetField }) {
+export default function Step2({ form, set }: { form: FormState; set: SetField }) {
   return (
     <>
       <div className="flex flex-col gap-2">

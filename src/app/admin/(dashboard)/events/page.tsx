@@ -34,7 +34,7 @@ export default async function AdminEventsPage() {
               <p className="text-xs text-stone-400 mt-1">{event.eventDate} · {event.location} · {event.category}</p>
             </div>
             <div className="flex items-center gap-3 shrink-0">
-              <Link href={`/admin/events/${event.id}/edit`} className="text-xs text-indigo hover:underline">
+              <Link href={`/admin/events/${event.id}/edit`} className="text-xs text-espresso hover:underline">
                 編輯
               </Link>
               <form action={deleteEvent.bind(null, event.id)}>

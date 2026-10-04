@@ -10,11 +10,11 @@
 
 @layer components {
   .btn-primary {
-    @apply inline-block px-6 py-3 bg-brown text-white text-sm  rounded-sm tracking-widest uppercase transition-all duration-200 transform-gpu hover:bg-opacity-90 hover:translate-y-[-2px];
+    @apply inline-block px-6 py-3 bg-caramel text-white text-sm  rounded-sm tracking-widest uppercase transition-all duration-200 transform-gpu hover:bg-opacity-90 hover:translate-y-[-2px];
   }
 
   .btn-outline {
-    @apply inline-block px-6 py-3 border border-brown text-brown text-sm rounded-sm tracking-widest uppercase transition-all duration-200 hover:bg-brown hover:text-white;
+    @apply inline-block px-6 py-3 border border-caramel text-caramel text-sm rounded-sm tracking-widest uppercase transition-all duration-200 hover:bg-caramel hover:text-white;
   }
 
   .section-title {

@@ -18,7 +18,7 @@ export default function AdminNav() {
   return (
     <aside className="w-full md:w-56 shrink-0 border-b md:border-b-0 md:border-r border-stone-200 bg-white">
       <div className="p-6">
-        <Link href="/admin" className="text-lg font-medium tracking-wide text-indigo">
+        <Link href="/admin" className="text-lg font-medium tracking-wide text-espresso">
           Pourfolio 後台
         </Link>
       </div>
@@ -28,7 +28,7 @@ export default function AdminNav() {
             key={path}
             href={path}
             className={`flex items-center gap-2 px-3 py-2 text-sm rounded-sm whitespace-nowrap transition-colors duration-200 ${
-              pathname.startsWith(path) ? 'bg-brown/10 text-brown' : 'text-stone-600 hover:bg-stone-50'
+              pathname.startsWith(path) ? 'bg-caramel/10 text-caramel' : 'text-stone-600 hover:bg-stone-50'
             }`}
           >
             <Icon size={16} />
@@ -38,7 +38,7 @@ export default function AdminNav() {
         <form action={logout}>
           <button
             type="submit"
-            className="w-full flex items-center gap-2 px-3 py-2 text-sm rounded-sm whitespace-nowrap text-stone-400 hover:text-brown hover:bg-stone-50 transition-colors duration-200"
+            className="w-full flex items-center gap-2 px-3 py-2 text-sm rounded-sm whitespace-nowrap text-stone-400 hover:text-caramel hover:bg-stone-50 transition-colors duration-200"
           >
             <FiLogOut size={16} />
             登出

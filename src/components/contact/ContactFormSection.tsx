@@ -20,22 +20,22 @@ export default function ContactFormSection() {
         <motion.div
           custom={0} variants={fadeUp} initial="hidden" animate="visible"
         >
-          <p className="section-label mb-6">直接聯絡</p>
+          <p className="section-label md:text-lg mb-6">直接聯絡</p>
           <div className="flex flex-col gap-6 mb-12">
-            <a href="mailto:hello@pourfolio.tw" className="flex items-center gap-3 text-stone-600 hover:text-brown transition-colors duration-200">
+            <a href="mailto:hello@pourfolio.tw" className="flex items-center gap-3 md:text-lg text-stone-500 hover:text-espresso transition-colors duration-200">
               <FiMail size={16} className="text-stone-500 shrink-0" />
-              <span className="text-sm">hello@pourfolio.tw</span>
+              <span className="text-sm md:text-[16px]">hello@pourfolio.tw</span>
             </a>
-            <a href="https://instagram.com" target="_blank" rel="noreferrer" className="flex items-center gap-3 text-stone-600 hover:text-brown transition-colors duration-200">
-              <FiInstagram size={16} className="text-brown shrink-0" />
-              <span className="text-sm">@pourfolio.tw</span>
+            <a href="https://instagram.com" target="_blank" rel="noreferrer" className="flex items-center gap-3 md:text-lg text-stone-500 hover:text-espresso transition-colors duration-200">
+              <FiInstagram size={16} className="text-stone-500 shrink-0" />
+              <span className="text-sm md:text-[16px]">@pourfolio.tw</span>
             </a>
           </div>
 
           <div className="border-t border-stone-500 pt-8">
-            <p className="section-label mb-4">回覆時間</p>
-            <p className="text-sm text-stone-500 leading-relaxed">
-              我們通常在 <span className="text-indigo font-medium">48 小時內</span>回覆所有詢問。<br />
+            <p className="section-label md:text-base mb-4">回覆時間</p>
+            <p className="text-sm md:text-base text-stone-500 leading-relaxed">
+              我們通常在<span className="text-stone-500 font-medium"> 48小時內 </span>回覆所有詢問。<br />
               急件請直接 Email 標注「急件」。
             </p>
           </div>

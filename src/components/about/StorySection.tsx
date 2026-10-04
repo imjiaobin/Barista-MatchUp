@@ -11,7 +11,7 @@ export default function StorySection({ storyParagraphs }: { storyParagraphs: str
           viewport={{ once: true }} transition={{ duration: 0.5 }}
           className="relative"
         >
-          <div className="aspect-[4/5] bg-gradient-to-br from-brown/60 to-indigo" />
+          <div className="aspect-[4/5] bg-gradient-to-br from-caramel/60 to-espresso" />
           <div className="absolute -bottom-6 -right-6 w-40 h-40 bg-olive/20" />
         </motion.div>
 
@@ -19,7 +19,7 @@ export default function StorySection({ storyParagraphs }: { storyParagraphs: str
           initial={{ opacity: 0, x: 24 }} whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }} transition={{ duration: 0.5 }}
         >
-          <p className="section-label text-indigo md:text-base mb-6">我們的起點</p>
+          <p className="section-label text-espresso md:text-base mb-6">我們的起點</p>
           {storyParagraphs.map((paragraph, i) => (
             <p key={i} className="text-stone-600 leading-relaxed mb-6 last:mb-0">
               {paragraph}

@@ -3,7 +3,7 @@ import Chip from './Chip'
 import { labelClass } from './formStyles'
 import type { FormState, SetField } from './types'
 
-export default function VenueStep({ form, set }: { form: FormState; set: SetField }) {
+export default function Step4({ form, set }: { form: FormState; set: SetField }) {
   return (
     <>
       <p className="text-sm text-stone-500">這個區塊不確定也沒關係，我們會在確認需求時跟你討論。</p>

@@ -67,26 +67,26 @@ export default function ServiceCards() {
                   : '0 0px 0px 0px rgba(29, 22, 15, 0)',
               }}
               transition={{ duration: hasEntered ? 0.25 : 0.4, ease: 'easeOut' }}
-              className="relative overflow-hidden p-10 border-2 border-stone-200 hover:border-brown transition-colors duration-300"
+              className="relative overflow-hidden p-10 border-2 border-stone-200 hover:border-caramel transition-colors duration-300"
             >
               <motion.div
                 animate={{
                   scale: isHovered ? 1.12 : 1,
                 }}
                 transition={{ duration: 0.25, ease: 'easeOut' }}
-                className="absolute top-8 right-8 w-12 h-12 rounded-full bg-cream/50 text-brown flex items-center justify-center"
+                className="absolute top-8 right-8 w-12 h-12 rounded-full bg-cream/50 text-caramel flex items-center justify-center"
               >
                 {icon}
               </motion.div>
 
               <div className="relative pr-16">
-                <p className="text-xs tracking-widest text-brown uppercase mb-1">{subtitle}</p>
-                <h3 className="text-xl font-medium text-indigo mb-4">{title}</h3>
+                <p className="text-xs tracking-widest text-caramel uppercase mb-1">{subtitle}</p>
+                <h3 className="text-xl font-medium text-espresso mb-4">{title}</h3>
                 <p className="text-sm text-stone-500 leading-relaxed mb-6">{desc}</p>
                 <ul className="flex flex-col gap-2">
                   {features.map((f) => (
-                    <li key={f} className="flex items-center gap-2 text-sm text-indigo">
-                      <span className="w-1 h-1 rounded-full bg-indigo inline-block" />
+                    <li key={f} className="flex items-center gap-2 text-sm text-espresso">
+                      <span className="w-1 h-1 rounded-full bg-espresso inline-block" />
                       {f}
                     </li>
                   ))}

@@ -99,7 +99,7 @@ export default function PageTransition({ children }: { children: ReactNode }) {
         {children}
       </motion.div>
       <motion.div
-        className="fixed inset-0 z-[100] bg-brown pointer-events-none"
+        className="fixed inset-0 z-[100] bg-caramel pointer-events-none"
         initial={{ y: '101%' }}
         animate={curtain}
       />

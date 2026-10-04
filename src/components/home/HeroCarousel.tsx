@@ -44,7 +44,7 @@ export default function HeroCarousel({ slides }: { slides: HeroSlideContent[] })
               exit={{ opacity: 0, y: -16 }}
               transition={{ duration: 0.8 }}
             >
-              <p className="section-label text-brown font-[350] md:text-xl mb-6">{slides[current].tag}</p>
+              <p className="section-label text-caramel font-[350] md:text-xl mb-6">{slides[current].tag}</p>
               <h1 className="text-5xl md:text-7xl font-light text-stone-900 leading-[1.05] tracking-tight mb-8">
                 {slides[current].line1}<br />
                 <span className="text-caramel">{slides[current].line2}</span>
@@ -121,6 +121,8 @@ export default function HeroCarousel({ slides }: { slides: HeroSlideContent[] })
               <div className="absolute inset-0 bg-black/15" />
               {/* 手機版：讓圖片淡出融入白色文字區塊 */}
               <div className="md:hidden absolute inset-0 bg-gradient-to-r from-white from-[55%] to-white/10" />
+              {/* 桌面版：只在跟文字欄相鄰的左側邊緣做模糊漸層，取代生硬的分割線 */}
+              <div className="hidden md:block absolute inset-y-0 left-0 w-28 bg-gradient-to-r from-white to-transparent" />
 
             </motion.div>
           </AnimatePresence>

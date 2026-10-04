@@ -14,15 +14,15 @@ import {
   VENUE_TYPES,
   WATER_SOURCE_OPTIONS,
 } from '../../lib/constants'
-import BudgetStep from './BudgetStep'
-import ContactInfoStep from './ContactInfoStep'
-import EventInfoStep from './EventInfoStep'
 import ProgressBar from './ProgressBar'
-import ReviewStep from './ReviewStep'
-import ServiceNeedsStep from './ServiceNeedsStep'
+import Step1 from './Step1'
+import Step2 from './Step2'
+import Step3 from './Step3'
+import Step4 from './Step4'
+import Step5 from './Step5'
+import Step6 from './Step6'
 import SubmittedMessage from './SubmittedMessage'
 import type { FormState } from './types'
-import VenueStep from './VenueStep'
 
 const STORAGE_KEY = 'pourfolio_contact_draft'
 const STEP_LABELS = ['聯絡人資訊', '活動基本資訊', '服務需求', '設備與場地', '預算與備註', '確認送出']
@@ -32,7 +32,7 @@ const initialState: FormState = {
   eventType: '', eventCity: '', eventAddress: '', venueType: '', eventStart: '', eventEnd: '',
   cupCount: '', drinkTypes: [], dessertNeeded: false, dessertNotes: '',
   powerSupply: '', waterSource: '',
-  budgetRange: '', notes: '', preferredContactMethod: '',
+  budgetRange: '', notes: '', preferredContactMethod: '電話',
   website: '',
 }
 
@@ -54,6 +54,10 @@ function validateStep(step: number, form: FormState): string | null {
     const n = Number(form.cupCount)
     if (!Number.isFinite(n) || n <= 0) return '請輸入預計出杯數量'
     if (form.drinkTypes.length === 0) return '請至少選擇一項飲品品項'
+  }
+  if (step === 4) {
+    if (!form.budgetRange) return '請選擇預算範圍'
+    if (!form.preferredContactMethod) return '請選擇希望的聯繫方式'
   }
   return null
 }
@@ -168,12 +172,12 @@ export default function ContactWizard() {
           transition={{ duration: 0.25 }}
           className="flex flex-col gap-6"
         >
-          {step === 0 && <ContactInfoStep form={form} set={set} />}
-          {step === 1 && <EventInfoStep form={form} set={set} />}
-          {step === 2 && <ServiceNeedsStep form={form} set={set} toggleDrinkType={toggleDrinkType} />}
-          {step === 3 && <VenueStep form={form} set={set} />}
-          {step === 4 && <BudgetStep form={form} set={set} />}
-          {step === 5 && <ReviewStep form={form} />}
+          {step === 0 && <Step1 form={form} set={set} />}
+          {step === 1 && <Step2 form={form} set={set} />}
+          {step === 2 && <Step3 form={form} set={set} toggleDrinkType={toggleDrinkType} />}
+          {step === 3 && <Step4 form={form} set={set} />}
+          {step === 4 && <Step5 form={form} set={set} />}
+          {step === 5 && <Step6 form={form} />}
         </motion.div>
       </AnimatePresence>
 

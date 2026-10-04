@@ -1,10 +1,10 @@
 import { inputClass, labelClass } from './formStyles'
 import type { FormState, SetField } from './types'
 
-export default function ContactInfoStep({ form, set }: { form: FormState; set: SetField }) {
+export default function Step1({ form, set }: { form: FormState; set: SetField }) {
   return (
     <>
-      <p className="text-sm text-stone-500">告訴我們怎麼聯絡到你，媒合成功後我們會直接跟你確認細節。</p>
+      <p className="text-sm md:text-base text-stone-500">告訴我們怎麼聯絡到你，媒合成功後我們會直接跟你確認細節。</p>
       <div className="flex flex-col gap-2">
         <label className={labelClass}>聯絡人 / 公司單位</label>
         <input className={inputClass} value={form.contactName} onChange={(e) => set('contactName', e.target.value)} placeholder="王小明 / OO 品牌" />
