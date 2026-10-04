@@ -1,0 +1,47 @@
+@import "tailwindcss";
+
+@theme {
+  --color-cream: #F7F1DE;
+  --color-cream-light: #faf8f5;
+  --color-latte: #ecd6bf;
+  --color-mocha: #d2a682;
+  --color-caramel: #b5592a;
+  --color-caramel-dark: #8B4513;
+  --color-espresso: #4E220F;
+  --color-olive: #607456;
+  --color-ink: #2b2420;
+  --color-ink-muted: #6b5f57;
+
+  --font-sans: var(--font-inter), var(--font-noto-sans-tc), system-ui, sans-serif;
+}
+
+@source "../app/**/*.{ts,tsx}";
+@source "../components/**/*.{ts,tsx}";
+
+@layer base {
+  body {
+    @apply bg-white text-stone-800 font-sans font-[350] antialiased;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-block px-6 py-3 bg-caramel text-white text-sm rounded-sm tracking-widest uppercase transition-all duration-200 transform-gpu hover:bg-caramel/90 hover:translate-y-[-2px];
+  }
+
+  .btn-outline {
+    @apply inline-block px-6 py-3 border border-caramel text-caramel text-sm rounded-sm tracking-widest uppercase transition-all duration-200 hover:bg-caramel hover:text-white;
+  }
+
+  .section-title {
+    @apply text-3xl md:text-4xl font-light tracking-tight text-stone-800;
+  }
+
+  .section-label {
+    @apply text-xs tracking-[0.25em] uppercase;
+  }
+
+  .card-hover {
+    @apply transition-transform duration-200 hover:translate-y-[-4px];
+  }
+}

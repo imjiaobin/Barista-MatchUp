@@ -2,7 +2,7 @@ import { Analytics } from '@vercel/analytics/next'
 import type { Metadata } from 'next'
 import { Inter, Noto_Sans_TC } from 'next/font/google'
 import SiteChrome from '../components/SiteChrome'
-import '../styles/global.scss'
+import '../styles/global.css'
 
 const inter = Inter({
   subsets: ['latin'],
