@@ -113,6 +113,31 @@ export async function sendContactNotification(input: ContactNotificationInput): 
   })
 }
 
+interface SurveyInviteInput {
+  contactName: string
+  contactEmail: string
+  surveyToken: string
+}
+
+export async function sendSurveyInviteEmail(input: SurveyInviteInput): Promise<void> {
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? ''
+  const surveyUrl = `${siteUrl}/survey/${input.surveyToken}`
+
+  const html = `
+    <h2>感謝您與 Pourfolio 合作！</h2>
+    <p>${escapeHtml(input.contactName)} 您好，活動圓滿結束，想邀請您花 1 分鐘填寫滿意度問卷，讓我們持續進步：</p>
+    <p><a href="${surveyUrl}">${surveyUrl}</a></p>
+  `
+
+  const transporter = getTransporter()
+  await transporter.sendMail({
+    from: process.env.GMAIL_USER,
+    to: input.contactEmail,
+    subject: 'Pourfolio 活動滿意度調查',
+    html,
+  })
+}
+
 function escapeHtml(value: string): string {
   return value
     .replace(/&/g, '&amp;')

@@ -19,7 +19,14 @@ const process = [
   { step: '04', title: '活動執行', desc: '咖啡師準時到場，Pourfolio 全程支援協調。' },
 ]
 
-export default function ProcessSection() {
+interface ProcessSectionProps {
+  label: string
+  headingLine1: string
+  headingLine2: string
+  ctaText: string
+}
+
+export default function ProcessSection({ label, headingLine1, headingLine2, ctaText }: ProcessSectionProps) {
   return (
     <section className="py-24 px-6 bg-stone-50">
       <div className="max-w-6xl mx-auto">
@@ -29,14 +36,14 @@ export default function ProcessSection() {
           className="flex flex-col md:flex-row md:items-start justify-between gap-6 mb-16"
         >
           <div>
-            <p className="section-label text-caramel mb-3 md:text-lg">合作流程</p>
-            <h2 className="text-3xl md:text-4xl font-light text-espresso">四個步驟，完成你的<br />完美咖啡活動</h2>
+            <p className="section-label text-caramel mb-3 md:text-lg">{label}</p>
+            <h2 className="text-3xl md:text-4xl font-light text-espresso">{headingLine1}<br />{headingLine2}</h2>
           </div>
           <Link
             href="/contact"
             className="group flex items-center gap-2 text-sm text-caramel md:text-lg md:font-[450] tracking-widest uppercase shrink-0"
           >
-            <span className=" transition-transform duration-200 group-hover:-translate-x-1">填寫需求表單</span>
+            <span className=" transition-transform duration-200 group-hover:-translate-x-1">{ctaText}</span>
             <FiArrowRight className="transition-transform duration-200 group-hover:translate-x-1" />
           </Link>
         </motion.div>

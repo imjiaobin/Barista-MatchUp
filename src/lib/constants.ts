@@ -22,9 +22,28 @@ export const EVENT_CATEGORIES = ['企業活動', '品牌快閃', '產品發表',
 
 export type EventCategory = (typeof EVENT_CATEGORIES)[number]
 
-export const CONTACT_SUBMISSION_STATUSES = ['new', 'contacted', 'archived'] as const
+export const CONTACT_SUBMISSION_STATUSES = ['new', 'contacted', 'confirmed', 'completed', 'lost'] as const
 
 export type ContactSubmissionStatus = (typeof CONTACT_SUBMISSION_STATUSES)[number]
+
+// 刻意放在這個純資料模組，不要放進 'use client' 的元件檔——'use client'
+// 檔案裡即使是純資料的 named export，從 Server Component import 進去
+// 還是會拿到 undefined（整個檔案會被當成 client reference 處理）。
+export const CONTACT_SUBMISSION_STATUS_LABELS: Record<ContactSubmissionStatus, string> = {
+  new: '新詢問',
+  contacted: '已聯繫',
+  confirmed: '已確認',
+  completed: '已完成',
+  lost: '未成交',
+}
+
+export const LOSS_REASONS = ['預算不符', '時間地點不合', '已找其他方案', '聯繫無回應', '其他'] as const
+
+export type LossReason = (typeof LOSS_REASONS)[number]
+
+export const SURVEY_SOURCES = ['web_form', 'manual_entry'] as const
+
+export type SurveySource = (typeof SURVEY_SOURCES)[number]
 
 export const ADMIN_SESSION_COOKIE = 'pourfolio_admin_session'
 

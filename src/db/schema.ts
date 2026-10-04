@@ -41,6 +41,46 @@ export const contactSubmissions = pgTable('contact_submissions', {
   preferredContactMethod: varchar('preferred_contact_method', { length: 20 }),
   // 後台追蹤
   status: varchar('status', { length: 20 }).notNull().default('new'),
+  // 狀態為 lost 時才會有值：流失原因（固定選項）＋ 選填的自由文字備註
+  lossReason: varchar('loss_reason', { length: 30 }),
+  lossReasonNotes: text('loss_reason_notes'),
+  createdAt: timestamp('created_at').notNull().defaultNow(),
+})
+
+// 活動確認後、執行階段的操作紀錄，跟 contactSubmissions 是 1:1
+// （不是每一筆詢問都會走到這一步，所以獨立成表而不是塞進
+// contactSubmissions 裡一堆 nullable 欄位）。
+export const eventExecutionLogs = pgTable('event_execution_logs', {
+  id: uuid('id').primaryKey().defaultRandom(),
+  submissionId: uuid('submission_id').notNull().unique()
+    .references(() => contactSubmissions.id, { onDelete: 'cascade' }),
+  arrivalAt: timestamp('arrival_at'),
+  setupAt: timestamp('setup_at'),
+  actualDurationMinutes: integer('actual_duration_minutes'),
+  onsiteContactName: varchar('onsite_contact_name', { length: 200 }),
+  onsiteContactPhone: varchar('onsite_contact_phone', { length: 50 }),
+  emergencyContactName: varchar('emergency_contact_name', { length: 200 }),
+  emergencyContactPhone: varchar('emergency_contact_phone', { length: 50 }),
+  onsiteNotes: text('onsite_notes'),
+  closedSmoothly: boolean('closed_smoothly'),
+  followUpNotes: text('follow_up_notes'),
+  createdAt: timestamp('created_at').notNull().defaultNow(),
+  updatedAt: timestamp('updated_at').notNull().defaultNow(),
+})
+
+// 客戶滿意度問卷，跟 contactSubmissions 是 1:1。id 本身就是公開問卷
+// 連結的 token（/survey/[token]），不另外簽發 token——uuid v4 本身
+// 已經有足夠的隨機性，專案裡也沒有除了 admin session 以外的簽章機制。
+export const satisfactionSurveys = pgTable('satisfaction_surveys', {
+  id: uuid('id').primaryKey().defaultRandom(),
+  submissionId: uuid('submission_id').notNull().unique()
+    .references(() => contactSubmissions.id, { onDelete: 'cascade' }),
+  source: varchar('source', { length: 20 }).notNull(), // 'web_form' | 'manual_entry'
+  rating: integer('rating'),
+  feedback: text('feedback'),
+  lowScoreFlagged: boolean('low_score_flagged').notNull().default(false),
+  sentAt: timestamp('sent_at'),
+  submittedAt: timestamp('submitted_at'),
   createdAt: timestamp('created_at').notNull().defaultNow(),
 })
 
@@ -68,3 +108,7 @@ export type NewEvent = typeof events.$inferInsert
 export type ContactSubmission = typeof contactSubmissions.$inferSelect
 export type AdminUser = typeof adminUsers.$inferSelect
 export type PageContentRow = typeof pageContent.$inferSelect
+export type EventExecutionLog = typeof eventExecutionLogs.$inferSelect
+export type NewEventExecutionLog = typeof eventExecutionLogs.$inferInsert
+export type SatisfactionSurvey = typeof satisfactionSurveys.$inferSelect
+export type NewSatisfactionSurvey = typeof satisfactionSurveys.$inferInsert

@@ -63,7 +63,19 @@ function BaristaCard({ barista }: { barista: Barista }) {
   )
 }
 
-export default function BaristasContent() {
+interface BaristasContentProps {
+  heroLabel: string
+  heroHeadingLine1: string
+  heroHeadingAccent: string
+  ctaLabel: string
+  ctaHeading: string
+  ctaBody: string
+  ctaButton: string
+}
+
+export default function BaristasContent({
+  heroLabel, heroHeadingLine1, heroHeadingAccent, ctaLabel, ctaHeading, ctaBody, ctaButton,
+}: BaristasContentProps) {
   return (
     <>
       {/* 頁首主視覺 */}
@@ -71,13 +83,13 @@ export default function BaristasContent() {
         <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-[1.15fr_1fr] items-stretch md:min-h-[480px]">
           <div className="relative z-10 flex flex-col justify-center py-32 md:py-24 md:pr-16">
             <motion.p custom={0} variants={fadeUp} initial="hidden" animate="visible" className="section-label mb-4">
-              咖啡師介紹
+              {heroLabel}
             </motion.p>
             <motion.h1 custom={1} variants={fadeUp} initial="hidden" animate="visible"
               className="text-5xl md:text-7xl font-light text-stone-800 leading-[1.1] tracking-tight"
             >
-              每一位，都是<br />
-              <span className="text-caramel italic">故事的述說者</span>
+              {heroHeadingLine1}<br />
+              <span className="text-caramel italic">{heroHeadingAccent}</span>
             </motion.h1>
           </div>
           <HeroImage src={baristasHeroImg} alt="咖啡師微笑沖煮咖啡" priority />
@@ -101,12 +113,12 @@ export default function BaristasContent() {
           viewport={{ once: true }} transition={{ duration: 0.4 }}
           className="max-w-2xl mx-auto text-center"
         >
-          <p className="section-label mb-4">咖啡師申請</p>
-          <h2 className="section-title mb-4">你也是優秀的咖啡師？</h2>
+          <p className="section-label mb-4">{ctaLabel}</p>
+          <h2 className="section-title mb-4">{ctaHeading}</h2>
           <p className="text-stone-500 text-sm mb-8 leading-relaxed">
-            加入 Pourfolio 平台，接觸更多高品質的商業合作機會，讓你的技術被更多人看見。
+            {ctaBody}
           </p>
-          <a href="mailto:join@pourfolio.tw" className="btn-outline">申請加入平台</a>
+          <a href="mailto:join@pourfolio.tw" className="btn-outline">{ctaButton}</a>
         </motion.div>
       </section>
     </>

@@ -1,27 +1,14 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 import { FiChevronDown, FiChevronUp } from 'react-icons/fi'
 import type { ContactSubmission } from '../../db/schema'
-import { updateSubmissionStatus } from '../../lib/actions/submissions'
-
-const STATUS_LABELS: Record<string, string> = {
-  new: '新詢問',
-  contacted: '已聯繫',
-  archived: '已封存',
-}
+import DetailRow from './DetailRow'
+import StatusControl from './StatusControl'
 
 function formatDateTime(value: Date | string) {
   return new Date(value).toLocaleString('zh-TW', { dateStyle: 'medium', timeStyle: 'short' })
-}
-
-function DetailRow({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="flex justify-between gap-6 py-2 border-b border-stone-100 last:border-b-0">
-      <span className="text-stone-400 shrink-0">{label}</span>
-      <span className="text-stone-700 text-right">{value}</span>
-    </div>
-  )
 }
 
 export default function SubmissionsTable({ submissions }: { submissions: ContactSubmission[] }) {
@@ -53,19 +40,15 @@ export default function SubmissionsTable({ submissions }: { submissions: Contact
                   </p>
                 </div>
               </button>
-              <form
-                action={updateSubmissionStatus.bind(null, s.id)}
-                onChange={(e) => e.currentTarget.requestSubmit()}
-              >
-                <select
-                  name="status" defaultValue={s.status}
-                  className="text-xs border border-stone-200 px-2 py-1 bg-white"
+              <div className="flex flex-col items-end gap-2">
+                <Link
+                  href={`/admin/submissions/${s.id}`}
+                  className="text-xs text-caramel hover:underline"
                 >
-                  {Object.entries(STATUS_LABELS).map(([value, label]) => (
-                    <option key={value} value={value}>{label}</option>
-                  ))}
-                </select>
-              </form>
+                  查看完整詳情 →
+                </Link>
+                <StatusControl submission={s} />
+              </div>
             </div>
 
             {isExpanded && (
@@ -97,6 +80,14 @@ export default function SubmissionsTable({ submissions }: { submissions: Contact
                     <p className="section-label mb-2 mt-6">預算與備註</p>
                     <DetailRow label="預算範圍" value={s.budgetRange || '未填寫'} />
                     <DetailRow label="特殊需求備註" value={s.notes || '無'} />
+
+                    {s.status === 'lost' && (
+                      <>
+                        <p className="section-label mb-2 mt-6">流失原因</p>
+                        <DetailRow label="原因" value={s.lossReason || '未填寫'} />
+                        <DetailRow label="備註" value={s.lossReasonNotes || '無'} />
+                      </>
+                    )}
                   </div>
                 </div>
               </div>

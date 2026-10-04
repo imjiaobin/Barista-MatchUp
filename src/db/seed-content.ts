@@ -29,6 +29,33 @@ const contentRows: Array<{ page: string; sectionKey: string; label: string; cont
   { page: 'about', sectionKey: 'story_para_1', label: '起點段落 1', content: 'Pourfolio 源自一個簡單的觀察：優秀的咖啡師很多，值得被好好呈現的品牌活動也很多，但兩者之間始終缺少一座橋樑。' },
   { page: 'about', sectionKey: 'story_para_2', label: '起點段落 2', content: '我們是一群熱愛咖啡文化的人，深信一杯精心準備的咖啡能為活動帶來截然不同的溫度。Pourfolio 正是在這樣的信念下起步。' },
   { page: 'about', sectionKey: 'story_para_3', label: '起點段落 3', content: '我們不想只當仲介，而是成為真正懂咖啡、懂活動的媒合夥伴。每一次配對，都是對品質的承諾。' },
+  // Services 頁 —— 頁首主視覺
+  { page: 'services', sectionKey: 'hero_label', label: '頁首 · 標籤', content: '服務項目' },
+  { page: 'services', sectionKey: 'hero_heading_line1', label: '頁首 · 標題第一行', content: '從媒合到落地，' },
+  { page: 'services', sectionKey: 'hero_heading_accent', label: '頁首 · 標題第二行（強調色）', content: '一站到位' },
+  // Services 頁 —— 合作流程區塊標題與 CTA
+  { page: 'services', sectionKey: 'process_label', label: '合作流程 · 標籤', content: '合作流程' },
+  { page: 'services', sectionKey: 'process_heading_line1', label: '合作流程 · 標題第一行', content: '四個步驟，完成你的' },
+  { page: 'services', sectionKey: 'process_heading_line2', label: '合作流程 · 標題第二行', content: '完美咖啡活動' },
+  { page: 'services', sectionKey: 'process_cta', label: '合作流程 · 按鈕文字', content: '填寫需求表單' },
+  // Events 頁 —— 頁首主視覺
+  { page: 'events', sectionKey: 'hero_label', label: '頁首 · 標籤', content: '活動故事' },
+  { page: 'events', sectionKey: 'hero_heading_line1', label: '頁首 · 標題第一行', content: '每一場活動，' },
+  { page: 'events', sectionKey: 'hero_heading_accent', label: '頁首 · 標題第二行（強調色）', content: '都值得被記住' },
+  { page: 'events', sectionKey: 'hero_body', label: '頁首 · 說明文字', content: '這裡蒐錄 Pourfolio 媒合、策劃過的精選歷屆活動，從企業尾牙到品牌快閃，記錄每一次咖啡與品牌相遇的時刻。' },
+  // Contact 頁 —— 頁首主視覺
+  { page: 'contact', sectionKey: 'hero_label', label: '頁首 · 標籤', content: '聯絡我們' },
+  { page: 'contact', sectionKey: 'hero_heading_line1', label: '頁首 · 標題第一行', content: '告訴我們你的' },
+  { page: 'contact', sectionKey: 'hero_heading_accent', label: '頁首 · 標題第二行（強調色）', content: '活動故事' },
+  // Baristas 頁 —— 頁首主視覺
+  { page: 'baristas', sectionKey: 'hero_label', label: '頁首 · 標籤', content: '咖啡師介紹' },
+  { page: 'baristas', sectionKey: 'hero_heading_line1', label: '頁首 · 標題第一行', content: '每一位，都是' },
+  { page: 'baristas', sectionKey: 'hero_heading_accent', label: '頁首 · 標題第二行（強調色）', content: '故事的述說者' },
+  // Baristas 頁 —— 加入平台呼籲區塊
+  { page: 'baristas', sectionKey: 'cta_label', label: '加入平台 · 標籤', content: '咖啡師申請' },
+  { page: 'baristas', sectionKey: 'cta_heading', label: '加入平台 · 標題', content: '你也是優秀的咖啡師？' },
+  { page: 'baristas', sectionKey: 'cta_body', label: '加入平台 · 說明文字', content: '加入 Pourfolio 平台，接觸更多高品質的商業合作機會，讓你的技術被更多人看見。' },
+  { page: 'baristas', sectionKey: 'cta_button', label: '加入平台 · 按鈕文字', content: '申請加入平台' },
 ]
 
 const seedEvents: Array<typeof events.$inferInsert> = [

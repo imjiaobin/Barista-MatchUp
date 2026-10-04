@@ -2,12 +2,14 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { FiCalendar, FiFileText, FiInbox, FiLogOut, FiSettings } from 'react-icons/fi'
+import { FiBarChart2, FiCalendar, FiFileText, FiInbox, FiLogOut, FiSettings, FiSmile } from 'react-icons/fi'
 import { logout } from '../../lib/actions/auth'
 
 const links = [
   { label: '活動', path: '/admin/events', icon: FiCalendar },
   { label: '詢問表單', path: '/admin/submissions', icon: FiInbox },
+  { label: '滿意度', path: '/admin/satisfaction', icon: FiSmile },
+  { label: '統計分析', path: '/admin/stats', icon: FiBarChart2 },
   { label: '頁面文案', path: '/admin/content', icon: FiFileText },
   { label: '設定', path: '/admin/settings', icon: FiSettings },
 ]
