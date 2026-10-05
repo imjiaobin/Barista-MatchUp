@@ -1,11 +1,20 @@
 'use client'
 
+import { FiAlertCircle } from 'react-icons/fi'
+import { Button } from '../../../components/admin/ui/Button'
+import { Card } from '../../../components/admin/ui/Card'
+import { EmptyState } from '../../../components/admin/ui/EmptyState'
+
+// 模板：錯誤狀態。不顯示 stack；digest 方便回報。
 export default function AdminError({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) {
   return (
-    <div className="flex flex-col items-center justify-center py-24 text-center">
-      <h2 className="text-xl font-light text-stone-800 mb-3">後台發生錯誤</h2>
-      <p className="text-sm text-stone-500 mb-6">{error.message || '請稍後再試一次'}</p>
-      <button onClick={reset} className="btn-outline">重新載入</button>
-    </div>
+    <Card>
+      <EmptyState
+        icon={FiAlertCircle}
+        title="資料載入失敗"
+        description={`請重新載入，問題持續請聯絡管理員。${error.digest ? `（代碼 ${error.digest}）` : ''}`}
+        action={<Button variant="secondary" onClick={reset}>重新載入</Button>}
+      />
+    </Card>
   )
 }

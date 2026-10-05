@@ -1,5 +1,6 @@
 import { asc, eq } from 'drizzle-orm'
 import ContentEditor from '../../../../components/admin/ContentEditor'
+import { PageHeader } from '../../../../components/admin/ui/PageHeader'
 import { db } from '../../../../db/client'
 import { pageContent } from '../../../../db/schema'
 import { updatePageContent } from '../../../../lib/actions/content'
@@ -19,14 +20,14 @@ export default async function AdminContentPage() {
   )
 
   return (
-    <div>
-      <h1 className="text-2xl font-light text-stone-800 mb-8">頁面文案</h1>
+    <>
+      <PageHeader title="頁面文案" description="修改後會即時反映在對應的前台頁面" />
       <ContentEditor title="首頁" rows={rowsByPage.home} action={updatePageContent.bind(null, 'home', ['/'])} />
       <ContentEditor title="品牌故事頁" rows={rowsByPage.about} action={updatePageContent.bind(null, 'about', ['/about'])} />
       <ContentEditor title="服務項目頁" rows={rowsByPage.services} action={updatePageContent.bind(null, 'services', ['/services'])} />
       <ContentEditor title="活動經歷頁" rows={rowsByPage.events} action={updatePageContent.bind(null, 'events', ['/events'])} />
       <ContentEditor title="聯絡我們頁" rows={rowsByPage.contact} action={updatePageContent.bind(null, 'contact', ['/contact'])} />
       <ContentEditor title="咖啡師介紹頁" rows={rowsByPage.baristas} action={updatePageContent.bind(null, 'baristas', ['/baristas'])} />
-    </div>
+    </>
   )
 }

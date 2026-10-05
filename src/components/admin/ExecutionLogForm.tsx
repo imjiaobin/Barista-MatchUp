@@ -3,6 +3,8 @@
 import { useActionState } from 'react'
 import type { EventExecutionLog } from '../../db/schema'
 import { upsertExecutionLog, type ExecutionLogFormState } from '../../lib/actions/executionLogs'
+import { Field, FormAlert, Input, Switch, Textarea } from './ui/Field'
+import { SubmitButton } from './ui/SubmitButton'
 
 const initialState: ExecutionLogFormState = { error: null }
 
@@ -15,80 +17,57 @@ function toInputValue(value: Date | string | null | undefined): string {
   return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`
 }
 
-const inputClass = 'border border-stone-200 px-4 py-3 text-sm bg-white focus:outline-none focus:border-caramel'
-const labelClass = 'text-xs tracking-widest uppercase text-stone-400'
-
 export default function ExecutionLogForm({ submissionId, log }: { submissionId: string; log: EventExecutionLog | null }) {
-  const [state, formAction, pending] = useActionState(upsertExecutionLog.bind(null, submissionId), initialState)
+  const [state, formAction] = useActionState(upsertExecutionLog.bind(null, submissionId), initialState)
 
   return (
-    <form action={formAction} className="bg-white border border-stone-200 p-6 text-sm flex flex-col gap-4">
-      <div className="grid md:grid-cols-2 gap-4">
-        <div className="flex flex-col gap-2">
-          <label className={labelClass}>到場時間</label>
-          <input type="datetime-local" name="arrivalAt" defaultValue={toInputValue(log?.arrivalAt)} className={inputClass} />
-        </div>
-        <div className="flex flex-col gap-2">
-          <label className={labelClass}>完成布置時間</label>
-          <input type="datetime-local" name="setupAt" defaultValue={toInputValue(log?.setupAt)} className={inputClass} />
-        </div>
+    <form action={formAction} className="flex max-w-3xl flex-col gap-5">
+      {state.error && <FormAlert>{state.error}</FormAlert>}
+
+      <div className="grid gap-5 sm:grid-cols-2">
+        <Field label="到場時間" htmlFor="exec-arrivalAt">
+          <Input id="exec-arrivalAt" type="datetime-local" name="arrivalAt" defaultValue={toInputValue(log?.arrivalAt)} />
+        </Field>
+        <Field label="完成布置時間" htmlFor="exec-setupAt">
+          <Input id="exec-setupAt" type="datetime-local" name="setupAt" defaultValue={toInputValue(log?.setupAt)} />
+        </Field>
       </div>
 
-      <div className="flex flex-col gap-2">
-        <label className={labelClass}>實際活動時長（分鐘）</label>
-        <input type="number" min="0" name="actualDurationMinutes" defaultValue={log?.actualDurationMinutes ?? ''} className={`${inputClass} w-40`} />
+      <Field label="實際活動時長（分鐘）" htmlFor="exec-duration" className="sm:w-48">
+        <Input id="exec-duration" type="number" min="0" name="actualDurationMinutes" defaultValue={log?.actualDurationMinutes ?? ''} />
+      </Field>
+
+      <div className="grid gap-5 sm:grid-cols-2">
+        <Field label="現場聯絡人" htmlFor="exec-onsiteName">
+          <Input id="exec-onsiteName" name="onsiteContactName" defaultValue={log?.onsiteContactName ?? ''} />
+        </Field>
+        <Field label="現場聯絡電話" htmlFor="exec-onsitePhone">
+          <Input id="exec-onsitePhone" name="onsiteContactPhone" defaultValue={log?.onsiteContactPhone ?? ''} />
+        </Field>
       </div>
 
-      <div className="grid md:grid-cols-2 gap-4">
-        <div className="flex flex-col gap-2">
-          <label className={labelClass}>現場聯絡人</label>
-          <input name="onsiteContactName" defaultValue={log?.onsiteContactName ?? ''} className={inputClass} />
-        </div>
-        <div className="flex flex-col gap-2">
-          <label className={labelClass}>現場聯絡電話</label>
-          <input name="onsiteContactPhone" defaultValue={log?.onsiteContactPhone ?? ''} className={inputClass} />
-        </div>
+      <div className="grid gap-5 sm:grid-cols-2">
+        <Field label="緊急聯絡人" htmlFor="exec-emergencyName">
+          <Input id="exec-emergencyName" name="emergencyContactName" defaultValue={log?.emergencyContactName ?? ''} />
+        </Field>
+        <Field label="緊急聯絡電話" htmlFor="exec-emergencyPhone">
+          <Input id="exec-emergencyPhone" name="emergencyContactPhone" defaultValue={log?.emergencyContactPhone ?? ''} />
+        </Field>
       </div>
 
-      <div className="grid md:grid-cols-2 gap-4">
-        <div className="flex flex-col gap-2">
-          <label className={labelClass}>緊急聯絡人</label>
-          <input name="emergencyContactName" defaultValue={log?.emergencyContactName ?? ''} className={inputClass} />
-        </div>
-        <div className="flex flex-col gap-2">
-          <label className={labelClass}>緊急聯絡電話</label>
-          <input name="emergencyContactPhone" defaultValue={log?.emergencyContactPhone ?? ''} className={inputClass} />
-        </div>
+      <Field label="現場備註" htmlFor="exec-onsiteNotes">
+        <Textarea id="exec-onsiteNotes" name="onsiteNotes" defaultValue={log?.onsiteNotes ?? ''} rows={3} placeholder="臨時狀況、客戶額外需求等" />
+      </Field>
+
+      <Switch name="closedSmoothly" defaultChecked={log?.closedSmoothly ?? false} label="活動順利結案" />
+
+      <Field label="後續待辦備註" htmlFor="exec-followUpNotes">
+        <Textarea id="exec-followUpNotes" name="followUpNotes" defaultValue={log?.followUpNotes ?? ''} rows={2} placeholder="若有未結事項請在此記錄" />
+      </Field>
+
+      <div className="flex justify-end">
+        <SubmitButton pendingText="儲存中…">儲存執行紀錄</SubmitButton>
       </div>
-
-      <div className="flex flex-col gap-2">
-        <label className={labelClass}>現場備註</label>
-        <textarea
-          name="onsiteNotes" defaultValue={log?.onsiteNotes ?? ''} rows={3}
-          placeholder="臨時狀況、客戶額外需求等"
-          className={`${inputClass} resize-none`}
-        />
-      </div>
-
-      <label className="flex items-center gap-2 text-sm text-stone-600">
-        <input type="checkbox" name="closedSmoothly" defaultChecked={log?.closedSmoothly ?? false} className="accent-caramel" />
-        活動順利結案
-      </label>
-
-      <div className="flex flex-col gap-2">
-        <label className={labelClass}>後續待辦備註</label>
-        <textarea
-          name="followUpNotes" defaultValue={log?.followUpNotes ?? ''} rows={2}
-          placeholder="若有未結事項請在此記錄"
-          className={`${inputClass} resize-none`}
-        />
-      </div>
-
-      {state.error && <p className="text-sm text-red-600">{state.error}</p>}
-
-      <button type="submit" disabled={pending} className="self-start bg-caramel text-white px-6 py-3 text-sm disabled:opacity-50">
-        {pending ? '儲存中...' : '儲存執行紀錄'}
-      </button>
     </form>
   )
 }

@@ -1,10 +1,15 @@
-import AdminNav from '../../../components/admin/AdminNav'
+import { cookies } from 'next/headers'
+import AdminFrame from '../../../components/admin/shell/AdminFrame'
 
-export default function AdminDashboardLayout({ children }: { children: React.ReactNode }) {
+// tokens 已由 global.css 匯入。側欄收合與主題存在 cookie，伺服器端先讀，避免首屏閃爍。
+export default async function AdminDashboardLayout({ children }: { children: React.ReactNode }) {
+  const store = await cookies()
   return (
-    <div className="min-h-screen bg-stone-50 flex flex-col md:flex-row">
-      <AdminNav />
-      <main className="flex-1 p-6 md:p-10 max-w-5xl">{children}</main>
-    </div>
+    <AdminFrame
+      defaultCollapsed={store.get('admin-sidebar')?.value === 'collapsed'}
+      defaultTheme={store.get('admin-theme')?.value === 'dark' ? 'dark' : 'light'}
+    >
+      {children}
+    </AdminFrame>
   )
 }

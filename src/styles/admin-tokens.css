@@ -1,0 +1,134 @@
+/* 後台 Design Tokens（Tailwind 4）
+ * 在 src/styles/global.css 的 `@import "tailwindcss";` 之後加入：@import "./admin-tokens.css";
+ * 色票對應 global.css @theme 既有品牌色（cream / latte / mocha / caramel / espresso / olive / ink），
+ * 字體沿用 app/layout.tsx 的 Inter + Noto Sans TC（next/font）。改色只改這裡。 */
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --background: #faf8f5;              /* cream-light */
+  --foreground: #2b2420;              /* ink */
+  --card: #ffffff;
+  --card-foreground: #2b2420;
+  --popover: #ffffff;
+  --popover-foreground: #2b2420;
+  --primary: #b5592a;                 /* caramel */
+  --primary-foreground: #ffffff;
+  --primary-hover: #8b4513;           /* caramel-dark */
+  --secondary: #ecd6bf;               /* latte */
+  --secondary-foreground: #4e220f;    /* espresso */
+  --muted: #f7f1de;                   /* cream */
+  --muted-foreground: #6b5f57;        /* ink-muted */
+  --accent: #f3e4d3;                  /* latte 淡一階 */
+  --accent-foreground: #8b4513;       /* caramel-dark */
+  --destructive: #b3392f;             /* 新增 */
+  --destructive-foreground: #ffffff;
+  --success: #607456;                 /* olive */
+  --success-soft: #e6ebe0;
+  --warning: #8a6414;                 /* 新增 */
+  --warning-soft: #f5e8c8;
+  --info: #4e220f;                    /* espresso */
+  --info-soft: #ecd6bf;               /* latte */
+  --border: #e7dccd;
+  --input: #dccbb6;
+  --ring: #b5592a;
+  --sidebar: #f7f1de;                 /* cream */
+  --sidebar-foreground: #4e220f;      /* espresso */
+  --sidebar-active: #ecd6bf;          /* latte */
+  --sidebar-active-foreground: #4e220f;
+  --chart-1: #b5592a;                 /* caramel */
+  --chart-2: #607456;                 /* olive */
+  --chart-3: #d2a682;                 /* mocha */
+  --chart-4: #4e220f;                 /* espresso */
+  --chart-grid: #ece3d6;
+
+  --admin-shadow-card: 0 1px 2px rgb(43 36 32 / 0.06), 0 0 0 1px rgb(43 36 32 / 0.04);
+  --admin-shadow-pop: 0 4px 16px rgb(43 36 32 / 0.12);
+  --admin-shadow-modal: 0 16px 40px rgb(43 36 32 / 0.22);
+  --sidebar-width: 15rem;
+  --sidebar-width-collapsed: 4.25rem;
+  --header-height: 3.5rem;
+}
+
+.dark {
+  color-scheme: dark;
+  --background: #1a1512;
+  --foreground: #f2eadf;
+  --card: #241d19;
+  --card-foreground: #f2eadf;
+  --popover: #2b231e;
+  --popover-foreground: #f2eadf;
+  --primary: #d2794a;                 /* caramel 提亮 */
+  --primary-foreground: #1a1512;
+  --primary-hover: #d2a682;           /* mocha */
+  --secondary: #3a2a20;
+  --secondary-foreground: #ecd6bf;
+  --muted: #2b231e;
+  --muted-foreground: #b3a497;
+  --accent: #3a2a20;
+  --accent-foreground: #d2a682;
+  --destructive: #e0705f;
+  --destructive-foreground: #1a1512;
+  --success: #a9bb9c;
+  --success-soft: #27301f;
+  --warning: #e3bf6a;
+  --warning-soft: #3a2f14;
+  --info: #ecd6bf;
+  --info-soft: #3a2a20;
+  --border: #3a302a;
+  --input: #4a3e36;
+  --ring: #d2794a;
+  --sidebar: #1f1915;
+  --sidebar-foreground: #e6dccb;
+  --sidebar-active: #3a2a20;
+  --sidebar-active-foreground: #d2a682;
+  --chart-1: #d2794a;
+  --chart-2: #a9bb9c;
+  --chart-3: #d2a682;
+  --chart-4: #ecd6bf;
+  --chart-grid: #3a302a;
+
+  --admin-shadow-card: 0 0 0 1px rgb(255 255 255 / 0.06);
+  --admin-shadow-pop: 0 0 0 1px rgb(255 255 255 / 0.07), 0 6px 16px rgb(0 0 0 / 0.4);
+  --admin-shadow-modal: 0 0 0 1px rgb(255 255 255 / 0.08), 0 16px 40px rgb(0 0 0 / 0.5);
+}
+
+/* 產生 bg-background、text-muted-foreground、border-border、shadow-card、font-admin… 等 utility。
+ * inline：utility 直接輸出 var(--x)，切換 .dark 時即時生效；透明度 bg-muted/60 由 Tailwind 4 以 color-mix 處理。 */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-hover: var(--primary-hover);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+  --color-warning: var(--warning);
+  --color-warning-soft: var(--warning-soft);
+  --color-info: var(--info);
+  --color-info-soft: var(--info-soft);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-active: var(--sidebar-active);
+  --color-sidebar-active-foreground: var(--sidebar-active-foreground);
+
+  --shadow-card: var(--admin-shadow-card);
+  --shadow-pop: var(--admin-shadow-pop);
+  --shadow-modal: var(--admin-shadow-modal);
+  --font-admin: var(--font-inter), var(--font-noto-sans-tc), system-ui, sans-serif;
+}

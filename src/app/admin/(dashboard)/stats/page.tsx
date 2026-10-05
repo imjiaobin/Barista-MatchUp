@@ -4,16 +4,17 @@ import { CONTACT_SUBMISSION_STATUS_LABELS, LOSS_REASONS, type ContactSubmissionS
 import { requireAdminSession } from '../../../../lib/session'
 import BarDistributionChart, { type BarDatum } from '../../../../components/admin/charts/BarDistributionChart'
 import TrendChart, { type TrendPoint } from '../../../../components/admin/charts/TrendChart'
+import { Card, CardBody, CardHeader } from '../../../../components/admin/ui/Card'
+import { PageHeader } from '../../../../components/admin/ui/PageHeader'
 
-// 狀態階段用跟網站本身一致的「沖煮漸層」表示進度：淺焦糖奶 → 深焙
-// espresso，階段愈後面顏色愈深；未成交不是流程裡的一個階段、是中途
-// 離開的分支，所以另外用警示色標出來，不跟漸層混在一起。
+// 階段色用圖表 token：待處理以中性色表示，之後的階段依序用焦糖、摩卡、深焙；
+// 未成交不是流程中的一個階段，而是中途離開的分支，用 destructive 另外標出。
 const STAGE_COLORS: Record<ContactSubmissionStatus, string> = {
-  new: '#ecd6bf',
-  contacted: '#d2a682',
-  confirmed: '#b5592a',
-  completed: '#4E220F',
-  lost: '#dc2626',
+  new: 'var(--muted-foreground)',
+  contacted: 'var(--chart-3)',
+  confirmed: 'var(--chart-1)',
+  completed: 'var(--chart-4)',
+  lost: 'var(--destructive)',
 }
 
 function monthKey(d: Date) {
@@ -46,23 +47,21 @@ function toSortedBars(counts: Map<string, number>): BarDatum[] {
     .sort((a, b) => b.value - a.value)
 }
 
+// 模板：統計頁。圖表一律用 token 色，深色模式自動切換。
 export default async function AdminStatsPage() {
   await requireAdminSession()
 
   const rows = await db.select().from(contactSubmissions)
 
-  // 詢問量趨勢（近 6 個月）
   const months = lastSixMonths()
   const monthCounts = countBy(rows, (r) => monthKey(new Date(r.createdAt)))
   const trendData: TrendPoint[] = months.map((m) => ({ label: m.label, count: monthCounts.get(m.key) ?? 0 }))
 
-  // 活動類型 / 城市 / 預算分布——只列出實際有資料的項目，由多到少排序
   const eventTypeData = toSortedBars(countBy(rows, (r) => r.eventType))
   const cityData = toSortedBars(countBy(rows, (r) => r.eventCity))
   const budgetData = toSortedBars(countBy(rows, (r) => r.budgetRange))
 
-  // 詢問案件目前所在階段（不是精確的歷史轉換率，是「現在」的快照分布，
-  // 因為目前的資料模型只存當下狀態、沒有記錄每次狀態變化的時間點）
+  // 目前所在階段是「現在」的快照，不是歷史轉換率：資料模型只存當下狀態，沒有記錄每次變化的時間點
   const statusCounts = countBy(rows, (r) => r.status)
   const stageOrder: ContactSubmissionStatus[] = ['new', 'contacted', 'confirmed', 'completed']
   const funnelData: BarDatum[] = stageOrder.map((s) => ({
@@ -72,63 +71,58 @@ export default async function AdminStatsPage() {
   }))
   const lostCount = statusCounts.get('lost') ?? 0
 
-  // 流失原因分布（只看狀態為未成交的案件）
   const lossReasonCounts = countBy(
     rows.filter((r) => r.status === 'lost'),
     (r) => r.lossReason,
   )
   const lossReasonData: BarDatum[] = LOSS_REASONS
-    .map((reason) => ({ label: reason, value: lossReasonCounts.get(reason) ?? 0, color: '#dc2626' }))
+    .map((reason) => ({ label: reason, value: lossReasonCounts.get(reason) ?? 0, color: STAGE_COLORS.lost }))
     .filter((d) => d.value > 0)
     .sort((a, b) => b.value - a.value)
 
   return (
-    <div>
-      <h1 className="text-2xl font-light text-stone-800 mb-8">統計分析</h1>
+    <>
+      <PageHeader title="統計分析" description="依詢問資料彙整，所有數字即時計算" />
 
-      <div className="bg-white border border-stone-200 p-6 mb-6">
-        <p className="section-label mb-4">詢問量趨勢（近 6 個月）</p>
-        <TrendChart data={trendData} />
-      </div>
+      <Card>
+        <CardHeader title="詢問量趨勢" description="近 6 個月" />
+        <CardBody><TrendChart data={trendData} /></CardBody>
+      </Card>
 
-      <div className="bg-white border border-stone-200 p-6 mb-6">
-        <p className="section-label mb-1">詢問案件目前所在階段</p>
-        <p className="text-xs text-stone-400 mb-4">
-          目前各階段的案件數（快照），不是歷史轉換率 ·
-          {lostCount > 0 && <span className="text-red-600"> 另有 {lostCount} 筆未成交</span>}
-        </p>
-        <BarDistributionChart data={funnelData} height={160} />
-      </div>
+      <Card>
+        <CardHeader
+          title="詢問案件目前所在階段"
+          description={`目前各階段的案件數（快照），不是歷史轉換率${lostCount > 0 ? ` · 另有 ${lostCount} 筆未成交` : ''}`}
+        />
+        <CardBody><BarDistributionChart data={funnelData} height={160} /></CardBody>
+      </Card>
 
-      <div className="grid md:grid-cols-2 gap-6 mb-6">
-        <div className="bg-white border border-stone-200 p-6">
-          <p className="section-label mb-4">活動類型分布</p>
-          {eventTypeData.length > 0
-            ? <BarDistributionChart data={eventTypeData} />
-            : <p className="text-sm text-stone-400">目前沒有資料</p>}
-        </div>
-        <div className="bg-white border border-stone-200 p-6">
-          <p className="section-label mb-4">城市分布</p>
-          {cityData.length > 0
-            ? <BarDistributionChart data={cityData} />
-            : <p className="text-sm text-stone-400">目前沒有資料</p>}
-        </div>
+      <div className="grid gap-6 md:grid-cols-2">
+        <Card>
+          <CardHeader title="活動類型分布" />
+          <CardBody>
+            {eventTypeData.length > 0 ? <BarDistributionChart data={eventTypeData} /> : <p className="text-sm text-muted-foreground">目前沒有資料</p>}
+          </CardBody>
+        </Card>
+        <Card>
+          <CardHeader title="城市分布" />
+          <CardBody>
+            {cityData.length > 0 ? <BarDistributionChart data={cityData} /> : <p className="text-sm text-muted-foreground">目前沒有資料</p>}
+          </CardBody>
+        </Card>
+        <Card>
+          <CardHeader title="預算區間分布" />
+          <CardBody>
+            {budgetData.length > 0 ? <BarDistributionChart data={budgetData} /> : <p className="text-sm text-muted-foreground">目前沒有資料</p>}
+          </CardBody>
+        </Card>
+        <Card>
+          <CardHeader title="流失原因分布" />
+          <CardBody>
+            {lossReasonData.length > 0 ? <BarDistributionChart data={lossReasonData} /> : <p className="text-sm text-muted-foreground">目前沒有未成交案件</p>}
+          </CardBody>
+        </Card>
       </div>
-
-      <div className="grid md:grid-cols-2 gap-6">
-        <div className="bg-white border border-stone-200 p-6">
-          <p className="section-label mb-4">預算區間分布</p>
-          {budgetData.length > 0
-            ? <BarDistributionChart data={budgetData} />
-            : <p className="text-sm text-stone-400">目前沒有資料</p>}
-        </div>
-        <div className="bg-white border border-stone-200 p-6">
-          <p className="section-label mb-4">流失原因分布</p>
-          {lossReasonData.length > 0
-            ? <BarDistributionChart data={lossReasonData} />
-            : <p className="text-sm text-stone-400">目前沒有未成交案件</p>}
-        </div>
-      </div>
-    </div>
+    </>
   )
 }
