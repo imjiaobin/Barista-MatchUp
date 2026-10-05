@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./admin-tokens.css";
 
 @theme {
   --color-cream: #F7F1DE;
