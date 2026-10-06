@@ -13,6 +13,7 @@ function getTransporter() {
 }
 
 interface ContactNotificationInput {
+  submissionId: string
   contactName: string
   contactPhone: string
   contactEmail: string
@@ -101,7 +102,7 @@ export async function sendContactNotification(input: ContactNotificationInput): 
         `).join('')}
       </table>
     `).join('')}
-    ${siteUrl ? `<p><a href="${siteUrl}/admin/submissions">前往後台查看</a></p>` : ''}
+    ${siteUrl ? `<p><a href="${siteUrl}/admin/submissions/${input.submissionId}">前往後台查看詢問</a></p>` : ''}
   `
 
   const transporter = getTransporter()

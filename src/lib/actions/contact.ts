@@ -73,7 +73,7 @@ export async function submitContactInquiry(input: ContactFormInput): Promise<Con
 
   const data = parsed.data
 
-  await db.insert(contactSubmissions).values({
+  const [created] = await db.insert(contactSubmissions).values({
     contactName: data.contactName,
     contactPhone: data.contactPhone,
     contactEmail: data.contactEmail,
@@ -92,10 +92,10 @@ export async function submitContactInquiry(input: ContactFormInput): Promise<Con
     budgetRange: data.budgetRange || null,
     notes: data.notes || null,
     preferredContactMethod: data.preferredContactMethod || null,
-  })
+  }).returning({ id: contactSubmissions.id })
 
   try {
-    await sendContactNotification(data)
+    await sendContactNotification({ ...data, submissionId: created.id })
   } catch (err) {
     // 這筆詢問已經寫入資料庫了；通知信寄送失敗不應該讓訪客看到失敗訊息。
     console.error('Failed to send contact notification email', err)
