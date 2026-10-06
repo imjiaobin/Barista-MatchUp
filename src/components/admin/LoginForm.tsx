@@ -8,10 +8,11 @@ import { SubmitButton } from './ui/SubmitButton'
 const initialState: LoginState = { error: null }
 
 // 錯誤訊息不透露帳號是否存在（由 login action 統一回傳）
-export default function LoginForm() {
+export default function LoginForm({ from }: { from?: string }) {
   const [state, formAction] = useActionState(login, initialState)
   return (
     <form action={formAction} className="flex flex-col gap-5">
+      <input type="hidden" name="from" value={from ?? ''} />
       {state.error && <FormAlert>{state.error}</FormAlert>}
       <Field label="帳號" htmlFor="username" required>
         <Input id="username" name="username" autoComplete="username" required autoFocus />

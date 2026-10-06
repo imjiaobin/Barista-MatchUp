@@ -12,9 +12,17 @@ export interface LoginState {
   error: string | null
 }
 
+// 只允許導回後台內的頁面，避免登入後被導到外部網址
+function safeAdminPath(value: FormDataEntryValue | null): string | null {
+  if (typeof value !== 'string') return null
+  if (!/^\/admin(?:$|[/?][^\\]*$)/.test(value) || value.startsWith('/admin/login')) return null
+  return value
+}
+
 export async function login(_prevState: LoginState, formData: FormData): Promise<LoginState> {
   const username = String(formData.get('username') ?? '').trim()
   const password = String(formData.get('password') ?? '')
+  const from = safeAdminPath(formData.get('from'))
 
   if (!username || !password) {
     return { error: '請輸入帳號與密碼' }
@@ -36,7 +44,7 @@ export async function login(_prevState: LoginState, formData: FormData): Promise
     path: '/',
   })
 
-  redirect('/admin')
+  redirect(from ?? '/admin')
 }
 
 export async function logout(): Promise<void> {
